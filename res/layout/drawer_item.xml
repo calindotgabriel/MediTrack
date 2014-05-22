@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/item_name"
+            android:text="Drawer Item"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:textColor="@color/list_item_title"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+        />
+
+<!-- android:layout_height="48dp"-->

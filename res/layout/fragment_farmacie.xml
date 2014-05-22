@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+        >
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_height="60dp"
+                  android:layout_alignParentBottom="true"
+                  android:background="@color/light_gray"
+                  android:id="@+id/bot" android:weightSum="1">
+
+        <ImageView android:layout_width="45dp"
+                   android:layout_height="45dp"
+                   android:src="@drawable/ic_locatie"
+                   android:layout_marginTop="10dp"
+                   android:layout_marginLeft="20dp"
+                   android:id="@+id/go_map_button"
+                   />
+    </LinearLayout>
+
+    <!--<ImageView android:layout_width="fill_parent"-->
+               <!--android:layout_height="match_parent"-->
+               <!--android:src="@drawable/box_top"-->
+               <!--android:layout_alignBottom="@id/nume_farmacie"-->
+            <!--&lt;!&ndash;/>&ndash;&gt; TODO-->
+
+
+    <ImageView
+            android:id="@+id/icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/ic_sensiblu"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="12dp"
+            android:padding="1dp"
+
+
+
+            />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/icon"
+            android:id="@+id/nume_farmacie"
+            android:text="Sensiblu"
+            android:textSize="40sp"
+            android:layout_marginTop="20dp"
+            android:paddingBottom="20dp"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_centerHorizontal="true"
+
+            />
+    <ScrollView android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:fillViewport="true"
+                android:layout_below="@id/icon"
+                android:layout_above="@id/bot"
+            >
+
+<RelativeLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@+id/adresa_titlu"
+              android:text="Adresa"
+
+              android:paddingLeft="25dp"
+              android:paddingBottom="10dp"
+              android:layout_marginTop="20dp"
+              android:textSize="30sp"
+              android:fontFamily="sans-serif-condensed"
+            />
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/adresa_titlu"
+              android:text="Strada pulii nr2."
+              android:paddingLeft="25dp"
+              android:textSize="15sp"
+              android:id="@+id/adresa_farmacie"
+            />
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@+id/program_titlu"
+              android:text="Program"
+              android:layout_below="@id/adresa_farmacie"
+              android:paddingLeft="25dp"
+              android:paddingBottom="10dp"
+              android:layout_marginTop="20dp"
+              android:textSize="30sp"
+              android:fontFamily="sans-serif-condensed"
+            />
+
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/program_titlu"
+              android:paddingLeft="25dp"
+              android:text="Luni:"
+              android:id="@+id/luni"
+            />
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/program_titlu"
+              android:layout_toRightOf="@id/luni"
+              android:paddingLeft="5dp"
+              android:text="22:00-15:30"
+              android:id="@+id/oraluni"
+            />
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/luni"
+              android:paddingLeft="25dp"
+              android:text="Marti:"
+              android:id="@+id/marti"
+            />
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/oraluni"
+              android:layout_toRightOf="@id/marti"
+              android:paddingLeft="5dp"
+              android:text="22:00-15:30"
+              android:id="@+id/oramarti"
+            />
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/marti"
+              android:paddingLeft="25dp"
+              android:text="Miercuri:"
+              android:id="@+id/miercuri"
+            />
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/oramarti"
+              android:layout_toRightOf="@id/miercuri"
+              android:paddingLeft="5dp"
+              android:text="22:00-15:30"
+              android:id="@+id/oramiercuri"
+            />
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/miercuri"
+              android:paddingLeft="25dp"
+              android:text="Joi:"
+              android:id="@+id/joi"
+            />
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/oramiercuri"
+              android:layout_toRightOf="@id/joi"
+              android:paddingLeft="5dp"
+              android:text="22:00-15:30"
+              android:id="@+id/orajoi"
+            />
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/joi"
+              android:paddingLeft="25dp"
+              android:text="Vineri:"
+              android:id="@+id/vineri"
+            />
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/orajoi"
+              android:layout_toRightOf="@id/vineri"
+              android:paddingLeft="5dp"
+              android:text="22:00-15:30"
+              android:id="@+id/oravineri"
+            />
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/vineri"
+              android:paddingLeft="25dp"
+              android:layout_marginTop="10dp"
+              android:text="Sambata:"
+              android:id="@+id/sambata"
+            />
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/oravineri"
+              android:layout_toRightOf="@id/sambata"
+              android:paddingLeft="5dp"
+              android:text="22:00-15:30"
+              android:id="@+id/orasambata"
+              android:layout_marginTop="10dp"
+            />
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/sambata"
+              android:paddingLeft="25dp"
+              android:text="Duminica:"
+              android:id="@+id/duminica"
+            />
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@id/orasambata"
+              android:layout_toRightOf="@id/duminica"
+              android:paddingLeft="5dp"
+              android:text="22:00-15:30"
+              android:id="@+id/oraduminica"
+            />
+</RelativeLayout>
+    </ScrollView>
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Locatie indisponibila"
+              android:layout_alignParentBottom="true"
+              android:layout_centerHorizontal="true"
+              android:id="@+id/locatie"
+              android:textSize="15sp"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="5dp"
+            />
+
+
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Elibereaza compensat"
+              android:layout_above="@id/locatie"
+              android:layout_centerHorizontal="true"
+              android:id="@+id/compensatie"
+              android:textSize="15sp"
+              android:layout_alignStart="@id/locatie"
+              android:layout_marginTop="5dp"
+            />
+
+    <ImageView android:layout_width="20dp"
+               android:layout_height="20dp"
+               android:layout_toLeftOf="@id/locatie"
+               android:layout_alignParentBottom="true"
+               android:src="@drawable/green"
+               android:layout_marginRight="2dp"
+               android:id="@+id/locatie_buton"
+               android:layout_marginBottom="5dp"
+
+            />
+    <ImageView android:layout_width="20dp"
+               android:layout_height="20dp"
+               android:layout_toLeftOf="@id/compensatie"
+               android:layout_above="@id/locatie_buton"
+               android:src="@drawable/green"
+               android:layout_marginRight="2dp"
+               android:id="@+id/compensat_buton"
+            />
+
+
+</RelativeLayout>
+

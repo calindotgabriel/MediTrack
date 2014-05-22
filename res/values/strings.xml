@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">MediTrack</string>
+
+    <string name="medicament_diazepam">Diazepam, comprimate</string>
+            <!--&#xD&#xA-->
+    <string name="descriere_diazepam" >Prospect\n
+    \n
+    Compozitie\n
+    1 comprimat contine 2 mg sau 10 mg diazepam.\n
+    1 fiola a 2 ml contine 10 mg diazepam.\n
+
+    Actiune terapeutica\n
+    Tranchilizant, miorelaxant, anticonvulsivant si antispastic uterin.\n
+
+    Indicatii\n
+    Stari de tensiune, neliniste si agitatie, labilitate emotionala, tulburari neurovegetative functionale, insomnie, nevroze anxioase, stari reactive, boli psihosomatice: tulburari de comportament la pacientii cronici psihopatizati, sindrom acut de abstinenta la alcoolici, tulburari de comportament la epileptici; status epilepticus si accese convulsive severe recurente (forma injectabila); stari de contractura a musculaturii striate de natura reflexa (inflamatii locale, traumatisme) sau de cauza neurologica; premedicatie in anestezie si interventii chirurgicale si linistire postoperator, iminenta de avort, iminenta de nastere prematura sau dirijarea travaliului in hipertonie uterina (forma injectabila).\n
+    \n
+    Mod de administrare\n
+    Oral\n
+    adulti, un comprimat a 2 mg sau 10 mg de 2-4 ori/zi (dupa situatie).\n
+    batrani: cate 1 comprimat a 2 mg de 1-2 ori/zi (la nevoie se poate creste cu prudenta).\n
+    Copii (peste 6 luni) cate 1/2-1 comprimat a 2 mg de 2 ori/zi (la nevoie se poate creste cu prudenta pana la cel mult 0,30 mg/kg corp/zi).\n
+    Intramuscular sau intravenos (lent, cu prudenta)\n
+    adulti si copii mari :2-20 mg o data (dupa situatie), se poate repeta la nevoie dupa 3-4 ore.\n
+    sugari (mai mari de 1 luna): 1-2 mg (0,25 mg/kg corp) o data; se poate repeta la nevoie pana la 2 mg/kg corp/zi.\n
+    \n
+    Contraindicatii\n
+    Nu se administreaza in caz de alergie la diazepam, miastenia gravis, soc, coma, intoxicatiile acute cu alcool, sau alte deprimante centrale, glaucom.\n
+    \n
+    Precautii\n
+    Se administreaza cu prudenta la batrani cu stare generala alterata (doze mici), insuficienta renala si hepatica.\n
+    \n
+    Sarcina si alaptare\n
+    Nu se administreaza in sarcina in primul trimestru.\n
+    \n
+    Efecte asupra capacitatii de conducere auto sau de exploatare a altor masini: Prudenta in tratamentul ambulator, deoarece diazepamul diminueaza performantele psihomotorii ale bolnavului.\n
+    \n
+    Reactii adverse\n
+    Relativ frecvent oboseala, somnolenta, ameteala, ataxie, cefalee, stare confuziva, depresie, disartrie, tremor, tulburari de vedere, diplopie, hipotensiune, greata, greutate in mictiune, tulburari de libido; foarte rar leucopenie, icter; ocazional hiperexcitabilitate. La bolnavii cu mic rau epileptic poate produce crize de mare rau sau instalarea unui status epilepticus tonic. Administrarea in doze mari, timp indelungat poate dezvolta dependenta de tip alcool-barbiturice. Injectia intravenoasa (mai ales la batrani, cand starea generala este alterata sau cand se asociaza alte deprimante centrale) poate produce apnee si/sau sincopa cardiaca (sunt recomandate dozele mici, injectare lenta si foarte prudenta, conditii de asistenta a respiratiei); local sunt posibile fenomene de iritatie si tromboza.\n
+    \n
+    Sinonime\n
+    Faustan, Relanium, Seduxen, Valinil, Valium.\n</string>
+
+    <string name="medicament_algocalmin">Algocalmin, comprimate</string>
+    <string name="descriere_algocalmin">  Prospect \n
+
+    Compozitie\n
+    Comprimate a 0,50 g natrium phenyl dimethylpyrazolonum methyl aminome-thansulfonicum.\n
+    Solutie injectabila 50%, natrium phenyl dimethylpyrazolonum methyl aminome-thansulfonicum.\n
+    Supozitoare pentru adulti: 1g natrium phenyl dimethylpyrazolonum methyl aminome-thansulfonicum, 1,53 g excipient.\n
+    Supozitoare pentru copii: 0,30 g natrium phenyl dimethylpyrazolonum methyl aminome-thansulfonicum, 0,82 g excipient.\n
+    \n
+    Actiune terapeutica\n
+    algocalminul este un analgezic puternic, inlocuind intr-o larga masura opiaceele,fara a determina efectele secundare obisnuite dupa administrarea acestora. Fiind un derivat pirazolonic, algocalminul are si o actiune antipiretica.\n
+    \n
+
+    Mod de administrare\n
+    Pentru adulti: 1-2 comprimate de 1-2 ori pe zi sau 2-5 ml de 1-2 ori pe zi, in injectii intramusculare profunde sau 1-3 supozitoare pentru adulti pe zi.\n
+    Pentru copii: 1/4-1 1/2 comprimat, dupa varsta sau 1-3 supozitoare pentru copii pe zi. Pentru comprimate, se recomanda desfacerea acestora in putina apa inainte de administrare.\n
+    \n
+    \n Reactii adverse
+    \nCa toti derivatii pirazolonici, algocalminul poate determina in cazuri foarte rare si la tratament prelungit reactii alergice si modificari ale formulei leucocitare: daca in cursul unui tratament prelungit cu algocalmin apare leucocitopenie sau granulocitopenie se va intrerupe tratamentul.</string>
+
+
+    <string name="medicament_nurofen1">Nurofen forte</string>
+    <string name="descriere_nurofen1">Prospect
+    \n
+    \nCompozitie:
+    \nUn drajeu nurofen Forte contine 400 mg ibuprofen, ca substanta activa, si excipienti:
+    \n- nucleu:croscarmeloza sodica, acid stearic, citrat de sodiu, laurilsulfat de sodiu, dioxid de siliciu coloidal anhidru
+    \n - strat de drajeifiere:guma arabica dispersata, carmeloza sodica, zaharoza, talc, dioxid de titan (E 171), macrogol 6000, Opacode S-1-9460 HV Brown
+    \n
+    \n Actiune:
+    \nNurofen Forte contine ibuprofen, care apartine unui grup de medicamente cunoscut sub numele de antiinflamatoare nesteroidiene (ains). AINS actioneaza prin schimbarea raspunsului organismului la durere, inflamatie si febra.
+    \n
+    \nIndicatii:
+    \nNurofen Forte este indicat in tratamentul migrenei, cefaleei, durerilor de spate, durerilor dentare, nevralgiei si durerilor menstruale, precum si al durerilor reumatice si musculare. Nurofen Forte amelioreaza durerea si scade inflamatia si febra, fiind eficace in tratamentul cefaleei si al altor tipuri de durere, precum si in ameliorarea simptomelor racelii si gripei.
+    \n
+    \n Contraindicatii
+    \n Nu utilizati Nurofen daca:
+    \n- aveti sau ati avut alergie la ibuprofen, acid acetilsalicilic, alte antiinflamatoare nesteroidiene (ains) sau la oricare dintre excipientii produsului
+    \n - aveti sau ati avut ulcer gastro-duodenal
+    \n- ati avut bronhospasm, rinita, urticarie asociate administrarii acidului acetilsalicilic sau altor antiinflamatoare nesteroidiene
+    \n- aveti insuficienta renala severa, insuficienta hepatica severa sau insuficienta cardiaca severa necontrolata
+    \n- aveti lupus eritematos sistemic sau alte colagenoze
+    \n - sunteti in ultimele 3 luni de sarcina
+    \n - doriti sa-l administrati unui copil cu varsta sub 12 ani.
+    \n
+    \n Reactii adverse:
+    \nIn general, Nurofen este bine tolerat de majoritatea persoanelor. Totusi, pot sa apara urmatoarele reactii adverse: durere sau disconfort gastric, greata, ulcer gastric, scaun colorat in negru, eruptii cutanate, mancarime, inrautatirea astmului bronsic, respiratie suieratoare inexplicabila sau dificultati in respiratie, tulburari hepatice si renale, dureri de cap, somnolenta, ameteli si tulburari ale auzului, si, rareori, eruptii cutanate, mancarimi ale pielii, descuamarea pielii, umflarea fetei.
+    \n
+    \n Mod de administrare:
+    \nMedicamentul este rezervat adultilor si copiilor peste 12 ani.
+    \n Adulti si copii peste 12 ani:doza initiala recomandata este de 400 mg ibuprofen (un drajeu Nurofen Forte);daca este necesar, se mai pot administra 400 mg ibuprofen (un drajeu Nurofen Forte) la intervale de 4-6 ore. Se recomanda sa nu se depaseasca doza de 1200 mg ibuprofen (3 drajeuri Nurofen Forte)pe zi.
+    \nVarstnici:nu este necesara ajustarea dozelor.
+    \nDrajeurile se administreaza pe cale orala, intregi, fara a fi mestecate, cu un pahar cu apa.
+    \n
+    \nPrecautii:
+    \n Intrebati medicul inainte de a utiliza Nurofen Forte daca:
+    \n - aveti insuficienta renala sau hepatica usoara-moderata
+    \n - aveti astm bronsic sau boli cardiace, hepatice sau renale
+    \n- utilizati medicamente, mai ales medicamente pentru controlul tensiunii arteriale (diuretice), anticoagulante, litiu sau metotrexat
+    \n- aveti sau ati avut boli alergice
+    \n- utilizati sau sunteti alergic la alte analgezice
+    \n - vi s-a spus sa reduceti aportul de potasiu
+    \n - ati avut boli digestive (hernie hiatala, hemoragii digestive, etc.)
+    \n - sunteti in primele 6 luni de sarcina sau alaptati
+    \n
+    \n Sarcina si alaptarea:
+    \n In primele 5 luni de sarcina utilizati Nurofen Forte numai la recomandarea medicului dumneavoastra si numai sub supravegherea acestuia.
+    \n In ultimul trimestru de sarcina administrarea Nurofen Forte este contraindicata.
+    \n  Nu utilizati Nurofen Forte daca alaptati. In general, in timpul sarcinii si alaptarii cereti sfatul medicului inainte de a utiliza orice medicament.
+    \n
+    \nForma de prezentare:
+    \nCutie cu un blister din PVC/AI a 12 drajeuri.
+    \n
+    \n Producator:
+    \n Reckitt Benckiser Healthcare International Ltd Nottingham NG90 2DB - Marea Britanie</string>
+
+    <string name="medicament_xanax">Xanax, comprimate</string>
+    <string name="descriere_xanax" formatted="false">
+    Prospect
+    \n
+    \n Compozitie
+    \nxanax tablete 0,25 mg;
+    \nFiecare tableta contine: Alprazolam 0,25 mg, celuloza microcristalina, lactoza, stearat de magneziu, amidon de grau, docusat de sodiu (85%) + benzoat de sodiu (15%), dioxid de silicon coloidal.
+    \n Xanax tablete 0,5 mg;
+    \nFiecare tableta contine: Alprazolam 0,5 mg, celuloza microcristalina, lactoza, stearat de magneziu, amidon de grau, docusat de sodiu (85%) + benzoat de sodiu (15%), dioxid de silicon coloidal, lac eritrosine de aluminiu sodiu.
+    \n Xanax tablete 1 mg;
+    \n Fiecare tableta contine: Alprazolam 1 mg, celuloza microcristalina, lactoza, stearat de magneziu, amidon de grau, docusat de sodiu (85%) + benzoat de sodiu (15%), dioxid de silicon coloidal, lac eritrosine de aluminiu sodiu, lac aluminiu FD si C albastru nr. 2.
+    \n Xanax tablete 2 mg;
+    \n  Fiecare tableta contine: Alprazolam 2 mg, celuloza microcristalina, lactoza, stearat de magneziu, amidon de grau, docusat de sodiu (85%) + benzoat de sodiu (15%), dioxid de silicon coloidal.
+    \n
+    \n Actiune terapeutica
+    \n Dupa administrare orala, nivelul maxim de concentratie plasmatica xanax-tablete este atins la 1-2 ore de la administrare.
+    \n Timpul mediu de injumatatire al alprazolam este de 12-15 ore.
+    \n Alprazolam este in mare parte oxidat. Metabolitii principali sunt alfa-hidroxi-alprazolam si o benzofenona derivata din alprazolam. Concentratiile plasmatice ale acestor metaboliti sunt foarte scazute. Actiunea biologica a alfa-hidroxi-alprazolam este de aproximativ jumatate din cea a alprazolamului. Timpii lor de injumatatire sunt de acelasi ordin de marime cu cel al alprazolamului. Metabolitul de tip benzofenona este inactiv. Alprazolamul si metabolitii sai sunt eliminati in principal prin urina. in vitro, alprazolamul este legat (80%) de proteinele plasmatice umane.
+    \n
+    \n Indicatii
+    \n xanax tablete (alprazolam) este indicat in tratamentul: starilor anxioase (nevroza anxioasa). simptomele care apar la acesti pacienti sunt: anxietatea, stari de tensiune, agitatie, insomnie, iritabilitate si/sau hiperactivitate vegetativa, determinand o varietate de simptome de tip somatic. depresie anxioasa. La acesti pacienti apar simultan simptome de anxietate si depresie.
+    \n  Depresie nevrotica sau reactiva. Acesti pacienti prezinta in primul rand o stare depresiva sau lipsa totala de interes si/sau de placere. De obicei sunt prezente si simptome de anxietate, agitatie psihomotorie si insomnie.
+    \nAlte caracteristici includ modificari ale apetitului, ale greutatii corporale, tulburari somatice, tulburari cognitive, scaderea energiei, sentimente de inutilitate/vinovatie sau idei de moarte sau suicid.
+    \nStari de anxietate, depresie anxioasa sau depresie - asociate cu alte boli ca faza cronica a sindromului de abstinenta la alcool sau afectiuni organice si functionale, in special anumite boli gastrointestinale, cardio-vasculare, dermatologice sau neurologice (demente, etc.).
+    \n Stari de panica. Xanax este indicat in tratamentul starilor de panica care evolueaza cu sau fara fobie. Xanax este de asemenea indicat in blocarea sau atenuarea atacurilor de panica si a fobiei la pacienti care au agorafobie cu atacuri de panica.
+    \n Eficacitatea Xanax in tratamentul anxietatii , al anxietatii asociate cu depresie si al depresiei nevrotice (reactive) pe termen lung, ce depaseste 6 luni, nu a fost stabilita de studii clinice sistematice; cu toate acestea, la pacientii cu afectiuni insotite de stari de panica, tratamentul de 8 luni a fost eficient. Medicul trebuie sa evalueze periodic eficienta medicamentului pentru fiecare pacient in parte.
+    \n
+    \n Doze si mod de administrare
+    \n Doza optima de Xanax (alprazolam) trebuie individualizata in functie de severitatea simptomelor si de raspunsul fiecarui pacient in parte. Doza zilnica va corespunde necesitatilor majoritatii pacientilor. La cativa pacienti care necesita doze mai mari, acestea trebuie crescute cu atentie pentru a evita reactiile adverse. Cand sunt necesare doze mai mari, trebuie crescuta mai intai doza din cursul serii. In general, pacientii care nu au primit anterior medicatie psihotropa vor necesita doze mai mici fata de cei tratati cu tranchilizante minore, antidepresive, sau hipnotice precum si de cei cu antecedente de etilism cronic. Este recomandata folosirea celei mai mici doze la batrani sau pacienti debilitati, pentru a exclude posibilitatea dezvoltarii suprasedarii sau a ataxiei. Pacientii trebuie reevaluati periodic, iar daca este necesar dozele trebuie ajustate.
+    \n  Xanax-tablete - doza la inceputul tratamentului* - doza uzuala
+    \n Anxietate - 0,25 pana la 0,5 mg de trei ori pe zi - 0,5 pana la 4 mg zilnic in doze fractionate
+    \n  Depresie - 0,5 mg de trei ori pe zi - 1,5 pana la 4,5 mg zilnic in doze fractionate
+    \n  Bolnavi in varsta sau cu boli debilitante 0,25 mg de doua pana la trei ori pe zi - 0,5 pana la 0,75 mg zilnic, in doze fractionate; se poate creste gradat daca e necesar si bine tolerat
+    \n  Afectiuni legate de stari de panica 0,5-1 mg seara la culcare sau 0,5 mg de trei ori pe zi. Doza trebuie ajustata in functie de raspunsul pacientului.
+    \n  Aceste ajustari nu trebuie sa fie mai mari de 1mg la 3-4 zile. Se pot adauga doze suplimentare pana la scheme de trei sau patru ori pe zi. Doza medie intr-un studiu larg multiclinic a fost 5,7 +/- 2,3 mg/zi, foarte putini pacienti avand nevoie de maximum 10 mg zilnic* Daca apar reactii adverse, doza trebuie scazuta.
+    \n  Intreruperea tratamentului: doza trebuie redusa in mod gradat corespunzator unei bune practici medicale. Se recomanda ca doza zilnica de Xanax sa nu fie scazuta cu mai mult de 0,5 mg la fiecare 3 zile. Unii pacienti necesita chiar o reducere mai lenta.
+    \n
+    \n Contraindicatii
+    \n Xanax este contraindicat la pacientii cu sensibilitate cunoscuta la benzodiazepine.
+    \n
+    \n Masuri de precautie
+    \n Folosirea sa nu a fost stabilita in cazul depresiei cu manifestari psihotice, in boala bipolara, sau in depresia endogena (ex.: pacientii internati cu depresie severa). In cazul administrarii benzodiazepinelor, inclusiv a alprazolamului, pot aparea obisnuinta si dependenta fizica/emotionala. Trebuie acordata atentie in prescrierea benzodiazepinelor, in special la pacientii cu predispozitie la abuzul de medicamente (ex. alcoolici si cei dependenti de droguri) datorita inclinatiei lor catre obisnuinta si dependenta. simptomele de abstinenta apar dupa scaderea rapida sau intreruperea brusca a tratamentului cu benzodiazepine, inclusiv alprazolam. Aceste simptome pot fi de la euforie usoara si insomnie la sindroame majore care includ crampe musculare si abdominale, varsaturi, transpiratii, tremor si convulsii. Semnele si simptomele, in special cele mai grave, sunt mai frecvente la pacientii care au primit doze excesive pe o perioada de timp mai mare. Cu toate acestea, simptomele de abstinenta au fost raportate si in cazul intreruperii bruste a tratamentului cu benzodiazepine la doze terapeutice. In consecinta, trebuie evitata intreruperea brusca a tratamentului, urmarindu-se reducerea gradata a dozei. Cand este intrerupta terapia la pacientii cu atacuri de panica, simptomele datorate recurentei atacurilor de panica se aseamana adesea cu acelea care apar in cazul abstinentei la tratament. Administrarea la pacientii cu depresie severa sau cu tendinta la suicid se face cu precautii corespunzatoare si in doze adecvate. Afectiunile care evolueaza cu stari de panica au fost asociate cu depresii majore primare si secundare si cu cresterea frecventei de suicid printre pacientii netratati. De aceea, trebuie luate aceleasi precautii in cazul folosirii dozelor mai mari de xanax pentru tratamentul starilor de panica ca si pentru folosirea oricarui alt psihotrop la pacientii depresivi sau la cei cu idei sau planuri ascunse de suicid. Pentru pacientii cu afectare renala sau hepatica trebuie luate precautiile obisnuite.
+    \n  Eficacitatea si siguranta tratamentului cu xanax la copii sub 18 ani nu a fost stabilita.
+    \n  Sarcina si alaptare: datorita experientei cu alte medicamente din clasa benzodiazepinelor, se presupune ca Xanax poate determina risc crescut de anomalii congenitale in cazul administrarii la femei gravide, in primul trimestru de sarcina. Daca se administreaza xanax in timpul sarcinii, sau daca pacienta ramane insarcinata in timpul tratamentului cu xanax, ea va fi avertizata asupra posibilelor reactii asupra fatului. Deoarece administrarea acestuia are rareori o indicatie de urgenta, folosirea sa in timpul primului trimestru de sarcina trebuie intotdeauna evitata.
+    \n Este cunoscut faptul ca benzodiazepinele se elimina prin laptele matern. Ca regula generala, mamele nu trebuie sa alapteze in timpul tratamentului cu Xanax.
+    \n  Capacitatea de conducere auto si de folosire a utilajelor: ca si in cazul altor medicamente active pe SNC, pacientii care primesc Xanax trebuie sfatuiti sa nu conduca masini sau sa opereze utilaje periculoase din cauza posibilelor efecte de somnolenta sau ameteala ce pot aparea in timpul tratamentului cu Xanax.
+
+    \n Reactii adverse
+    \n Efectele adverse, daca apar, sunt observate, in general, la inceputul tratamentului si dispar de obicei in cursul tratamentului sau la reducerea dozelor.
+    \n La pacientii tratati pentru anxietate, depresie asociata cu anxietate, si depresie nevrotica (reactiva), reactiile adverse cele mai frecvente sunt senzatia de somnolenta si de ameteala.
+    \n Mai putin frecvente au fost tulburarile de vedere, cefalee, depresie, insomnie, nervozitate/anxietate, tremor, modificari de greutate, tulburari de memorie/amnezie, tulburari de coordonare, diferite simptome gastrointestinale si manifestari vegetative.
+    \n In plus, au fost raportate urmatoarele reactii adverse aparute ca urmare a folosirii benzodiazepinelor anxiolitice, inclusiv a alprazolamului: distonie, iritabilitate, anorexie, oboseala, vorbire neclara, icter, slabiciune musculara, modificari ale libidoului, neregularitati ale ciclului menstrual, incontinenta, retentie de urina si afectarea functiei hepatice.
+    \n Foarte rar s-a raportat cresterea presiunii intraoculare.
+    \n  Cele mai frecvente efecte adverse la pacientii cu afectiuni, care evolueaza cu stari de panica, au fost sedarea/somnolenta, oboseala, ataxia/tulburari de coordonare si vorbirea neclara. Mai putin frecvente au fost modificarea afectului, simptome gastro-intestinale, dermatita, tulburari ale memoriei, disfunctii sexuale, afectari ale intelectului si confuzie.
+    \n  Ca si in cazul altor benzodiazepine au fost raportate, dar mai rar, reactii ca: dificultati de concentrare, stari confuzionale, halucinatii, excitatii, precum si efecte de comportament advers ca iritabilitate, agitatie, furie si agresivitate sau reactii de tip ostil. In multe dintre cazurile observate ce au prezentat tulburari de comportament, pacientii primeau concomitent si alte medicamente active pe SNC, si/sau sufereau de o afectiune psihiatrica. Rapoarte izolate publicate, implicand un numar mic de pacienti au indicat ca astfel de efecte adverse apar la bolnavii cu tulburare de personalitate de granita, cu antecedente de comportament violent sau agresiv, sau cu antecedente de abuz de alcool sau droguri. La pacientii cu tulburare psihica consecutiva unui stres/eveniment traumatizant au fost raportate stari de iritabilitate, ostilitate, si idei obsesive in cazul intreruperii tratamentului cu alprazolam.</string>
+
+    <string name="medicament_aspirina1">Aspirina - comprimate</string>
+    <string name="descriere_aspirina1">Prospect
+    \nprodus: ASPIRIN
+    acidum acetylsalycilicum
+    \n
+
+    \n Prezentare farmaceutica: Cutii cu 20 si 100 comprimate, 1 comprimat continand componenta activa: acid acetilsalicilic 500 mg.
+    \n
+
+    \n Actiune terapeutica: Aspirin actioneaza ca un antiinflamator nesteroidian, antipiretic, analgezic, antiagregant plachetar.
+    \n
+
+    \n Indicatii: In dureri usoare sau medii, de exemplu in cefalee, in dureri dentare, in dismenoree, inflamatii, febra si raceli. Atentie Aspirin nu trebuie administrata timp indelungat sau in doze ridicate fara recomandarea medicului. Aspirin se administreaza copiilor si tinerilor cu afectiuni insotite de febra numai la indicatia medicului, din cauza posibilei aparitii a sindromului Reye si numai atunci cand alte masuri nu au avut o actiune binefacatoare.
+    \n
+
+    \n Contraindicatii Se interzice administrarea Aspirin cand exista un risc crescut de hemoragii. Aspirin se administreaza numai la recomandarea medicului: in cazul terapiei simultane cu medicamente anticoagulante (de exemplu derivati ai cumarinei, heparina), in insuficienta glucozo-6-fosfat-dehidrogenazei, in astm sau alergie la antireumatice si alte substante alergene, la pacienti cu tulburari gastro-duodenale cronice, insuficienta renala, in timpul sarcinii, in special in ultimele trei luni.
+    \n
+
+    \n Precautii: Pacientii care sufera de astm, alergie la polen, vegetatii adenoidiene sau infectii cronice ale aparatului respirator (in special atunci cand sunt insotite de tulburari asemanatoare cu alergia la polen), cat si pacientii hipersensibili la analgezice si antireumatice risca la administrarea produsului Aspirin aparitia unor crize de astm (astm de intoleranta la analgezice). Acestor bolnavi li se administreaza Aspirin numai la sfatul medicului. Acelasi lucru este valabil si pentru bolnavii hipersensibili fata de alte substante ce le provoaca reactii alergice, cum ar fi eruptiile cutanate, pruritul sau urticaria febrila. Aspirin se administreaza la copii si tineri cu maladii febrile numai la sfatul medicului si numai atunci cand alte metode nu au avut efectul scontat. Daca aceste imbolnaviri sunt insotite de vome prelungite, acestea pot fi simptome ale sindromului Reye, un sindrom extrem de rar, dar care ameninta uneori viata, necesitand de urgenta o ingrijire medicala. Tratamentul in timpul sarcinii se face numai cu avizul medicului. La administrarea regulata in doze ridicate in timpul alaptarii trebuie luata in consideratie intreruperea alaptarii.
+    \n
+
+    \n Reactii adverse: Tulburari gastrice, hemoragii gastro-intestinale; rar reactii alergice diverse (bronhospasm, eruptii cutanate); foarte rar o scadere a trombocitelor (trombocitopenie). Atentie La administrarea frecventa si prelungita, in cazuri rare, poate aparea o hemoragie gastrica grava. La aparitia scaunelor negre trebuie consultat imediat medicul. In cazuri exceptionale, la o administrare indelungata, se poate instala o anemie prin microhemoragii digestive. Supradozarea poate cauza la copii si varstnici ameteli si tinitus. In aceste cazuri pacientii se pot adresa medicului. La depasirea dozelor poate creste valoarea transaminazelor.
+    \n
+
+    \n Interactiuni cu alte medicamente: Se potenteaza: efectul medicamentelor anticoagulante (de exemplu derivati ai cumarinei, heparina); riscul hemoragiilor gastrointestinale la administrarea simultana a cortizonului; actiunea efectelor adverse a tuturor medicametelor antireumatice nesteroidiene; efectul medicamentelor hipoglicemiante (sulfonilureice); actiunea nedorita a metotrexatului. Scade efectul spironolactonei, al furosemidului, medicamente care favorizeaza eliminarea acidului uric in cazul gutei. Nu se recomanda asocierea Aspirin cu medicamentele de mai sus fara sfatul medicului.
+    \n
+
+    \n Mod de administrare: Daca nu exista alte indicatii medicale:
+    \n
+    \n Adulti
+    \n
+
+    \n  doza unica:
+    1-2 comprimate
+
+    \n doza zilnica:
+    \n max. 6 comprimate
+    \n  max. 1 1/2 comprimat
+
+    \n
+    \n Comprimatele se administreaza cu apa, pe cat posibil dupa masa. Este bine sa se bea 1/2 sau 1 pahar cu apa dupa administrare.
+    \n
+
+    \n Valabilitate: Aspirin nu trebuie administrata dupa expirarea perioadei de valabilitate. Atentie A nu se lasa medicamentele la indemana copiilor.</string>
+
+    <string name="medicament_nurofen2">Nurofen, gel</string>
+    <string name="descriere_nurofen2">Prospect
+    \n
+    \n Forma de prezentare:
+    \nGel 5%%; ct. x 1 tub x 20, 25, 30, 35, 50 sau 100 g
+    \n
+
+    \n Indicatii:
+    \n Tratament simptomatic al afectiunilor dureroase si al febrei; tratament poliartritei reumatoide (inclusiv artrita juvenila), osteoartritelor, spondilartritei ankilopoietice, artritei gutoase si artritei psoriazice.
+    \n
+
+    \n Doze si recomandari:
+    400-1800 mg/zi, divizat in 3-4 prize, maxim 2400 mg/zi.
+    \n
+
+    \nContraindicatii
+    \n  Hipersensibilitate la ibuprofen si alte AINS, ulcer peptic activ sau in antecedente, hemoragii gastrointestinale, colita ulceroasa, tulburari hepatice si/sau renale grave, LES sau alte colagenoze; incepand cu luna a 6-a de sarcina.
+    \n
+
+    \n Atentionari:
+    \n Prudenta la varstnici, copii, boli active ale tractului gastro-intestinal, istoric de bronhospasm, afectarea functiilor renale si/sau hepatice sau cardiace, istoric de IC sau HTA, deficite intrinseci de coagulare, tulburari de vedere; asocieri cu diuretice, anticoagulante orale, ticlopidina, alfa-blocante, glucocorticoizi, acid acetilsalicilic sau alte AINS, digoxina, fenitoina, litiu, metotrexat, dispozitive contraceptive intrauterine; sarcina si alaptare; soferi si activitati de precizie.
+    \n
+
+    \n Reactii adverse:
+    \nPirozis, anorexie, greata, voma, dispepsie, disconfort abdominal, diaree, ulcer activ si hemoragii gastro-intestinale, cefalee, confuzie, tinitus si somnolenta, tulburari psihotice, reactii depresive, febra, redoarea muschilor gatului, tulburari senzoriale, ambliopie toxica, vedere incetosata si tulburari ale vederii colorate, urticaria, exantemul si purpura, prurit, sd. Stevens-Johnson, reactii de hipersensibilitate, prelungirea timpului de sangerare, trombocitopenie, granulocitopenie, agranulocitoza, anemie hemolitica si anemie aplastica, valori anormale ale testelor hepatice, icter, retentie hidrosalina, disurie, nefrita interstitiala acuta.\n</string>
+
+    <string name="medicament_cipralex">Cipralex, comprimate filmate</string>
+    <string name="descriere_cipralex">Prospect
+    \n
+    \n Forma de prezentare:
+    \n  Comprimate filmate 5 mg, 10 mg; ct. Ũ 2 blist. Ũ 14 cpr. (5 mg); ct. Ũ 1 sau 2 blist. Ũ 14 cpr. (10 mg)
+    \n
+
+    \n  Indicatii:
+    \n Depresie, tulburari de panica, anxietate sociala, anxietate generalizata.
+    \n
+
+    \n Dozare si mod de administrare:
+    \n Doza uzuala 10 mg/zi; doza maxima recomandata 20 mg/zi.
+    \n
+
+    \n  Contraindicatii
+    \n  Hipersensibilitate, asociere cu IMAO.
+    \n
+
+    \n Atentionari:
+    \n In insuficienta hepatica sau diabet zaharat, se adapteaza dozele. Prudenta in sarcina si alaptare.
+    \n
+
+    \nReactii adverse:
+    \nGreata, sinuzita, scaderea poftei de mancare, insomnie sau somnolenta, diaree sau constipatie, tulburari sexuale, oboseala, febra.\n</string>
+
+    <string name="medicament_nurofen3">Nurofen raceala si gripa</string>
+    <string name="descriere_nurofen3">Prospect
+    \n
+    \n Compozitie:
+    \nSubstantele active sunt ibuprofen 200 mg si clorhidrat de pseudoefedrina 30 mg. Celelalte componente sunt celuloza microcristalina, croscarmeloza sodica, polividona, fosfat de calciu tribazic, stearat de magneziu, hipromeloza, talc, Opaspray yellow M-1F-6168 solid (alcool industrial metilat, apa purificata, hipromeloza, dioxid de titan E 171, quinoline Yellow-Aluminium lake E104, Sunset Yelow- Aluminium lake E110) sau Mastercote Yellow FA 0156 solid (alcool industrial metilat, apa purificata, hipromeloza, dioxid de titan E171, quinoline Yellow-Aluminium lake E104, Sunset Yelow- Aluminium lake E110), BlackOpacode S-1-8152 HV solid (Shellac, oxid de fer negru (E 172), lecitina din soia, antispumant DC 1510) sau Black Printing Ink (Shellac, oxid de fer negru (E172), propilenglicol).
+    \n
+    \n Indicatii:
+    \n Nurofen raceala si gripa contine doua substante active: ibuprofen - un antiinflamator nesteroidian si pseudoefedrina - un decongestionant nazal care actioneaza impreuna pentru ameliorarea simptomelor racelii. Nurofen raceala si gripa amelioreaza durerea, reduce inflamatia, scade febra si decongestioneaza sinusurile si caile respiratorii superioare.
+    \n Nurofen Raceala si Gripa este folosit pentru tratamentul simptomatic al racelii si gripei (incluzand durere, cefalee, febra, dureri de gat, obstructie nazala si sinusala) asociate cu congestie nazala.
+    \n
+    \n Contraindicatii:
+    \n Nu luati Nurofen Raceala si Gripa daca:
+    \n  - sunteti alergic la vreunul dintre componentii mentionati mai sus, la acidul acetilsalicilic sau medicamente asemanatoare
+    \n  - daca ati avut sau aveti ulcer (sau o alta afectiune a stomacului)
+    \n - daca ati suferit o inrautatire a astmului bronsic sau ati avut rinita sau urticarie asociate administrarii acidul acetilsalicilic sau altor antiinflamatoare nesteroidiene
+    \n - daca suferiti de: insuficienta hepato-celulara severa, insuficienta renala severa, lupus eritematos sistemic, glaucom cu unghi inchis, afectiuni uretro-prostatice cu risc de retentie urinara, hipertensiune arteriala severa, boala coronariana severa
+    \n - daca faceti tratament concomitent cu iproniazida (inhibitor de monoaminooxidaza non-selectiv) sau daca ati luat inhibitori de monoaminooxidaza in ultimele 14 zile
+    \n - daca sunteti gravida in ultimele trei luni de sarcina
+    \n - daca suferiti de insuficienta cardiaca severa.
+    \n
+    \n  Reactii adverse:
+    \n Ca toate medicamentele, Nurofen Raceala si Gripa poate provoca reactii adverse, cu toate ca nu apar la toate persoanele.
+    \n Reactiile adverse sunt rare si pot include: durei sau disconfort gastric, greata, indigestie, scaun negru sau constipatie, ulcer gastric, transpiratii, ameteli, inrautatirea astmului bronsic, respiratie suieritoare inexplicabila sau dificultati in respiratie, dificultate la mictiune si eruptii cutanate, tulburari de vedere, tulburari hepatice sau renale, dureri de cap, ameteli si tulburari ale auzului, durere in piept, palpitatii, neliniste si insomnie. Mai putin frecvent produsul poate determina slabiciune musculara, tremor, anxietate, halucinatii si trombocitopenie.
+    \n Medicamente precum Nurofen Raceala si Gripase pot asocia cu un risc usor crescut de aparitie a atacului de cord ("infarct miocardic") sau a accidentului vascular cerebral.
+    \n Daca vreuna dintre reactiile adverse devine grava sau daca observati orice reactie adversa nementionata in acest prospect, va rugam sa spuneti medicului dumneavoastra sau farmacistului.
+    \n
+    \n Mod de administrare:
+    \n Luati intotdeauna Nurofen Raceala si Gripa exact asa curn v-a spus medicul dumneavoastra.Trebuie sa discutati cu medicul dumneavoastra sau cu farmacistul daca nu sunteti sigur.
+    \n Adulti si copii peste 15 ani: doza recomandata este de 2 comprimate filmate Nurofen Raceala si Gripa,apoi, daca este necesar, continuati cu 1 sau 2 comprimate filmate Nurofen Raceala si Gripa la fiecare 4-6 ore. Nu depasiti doza de 6 comprimate filmate Nurofen Raceala si Gripain 24 de ore. Nu se recomanda administrarea produsului la copii sub 15 ani.
+    \n Varstnici: nu se recomanda un dozaj special pentru pacientii varstnici, cu exceptia cazurilor cu insuficienta renala si hepatica, cand doza trebuie ajustata individual. Daca simptomele persista sau se agraveaza, cereti sfatul medicului dumneavoastra.\n</string>
+
+    <string name="medicament_tantum1">Tantum verde , comprimate</string>
+    <string name="descriere_tantum1">Prospect
+    \n
+    \n Compozitie
+    \n  Comprimate continand benzidamina 3 mg (cutie cu 30 buc.).
+    \n
+    \n Actiune terapeutica
+    \n antiinflamator, antiseptic analgezic local cu buna penetrare in tesuturile oro-faringiene.
+    \n
+    \n Indicatii
+    \n Inflamatii oro-faringiene: faringita, amigdalita, gingivita, stomatita, parodontopatii, leziuni ale mucoasei bucale de diferite etiologii (proteze, iradieri, manevre stomatologice).
+    \n
+    \n Doze si mod de administrare
+    \n  Un comprimat de 3-4 ori/zi, comprimatul se pastreaza cat mai mult timp in cavitatea bucala pentru o dizolvare lenta.
+    \n
+    \n  Contraindicatii
+    \n  Hipersensibilitate la produs.
+    \n
+    \n  Reactii adverse
+    \n  Nu s-au semnalat.\n </string>
+
+    <string name="medicament_tantum2">Tantum rosa, pulbere</string>
+    <string name="descriere_tantum2">Prospect
+    \n
+    \n Compozitie
+    \nFiecare plic contine clorhidrat de benzidamina 500 mg si excipienti: trimetilcetilamoniu-p-toluensulfonat, povidona, clorura de sodiu.
+    \n
+    \n Actiune terapeutica
+    \n Benzidamina este un medicament antiinflamator nesteroidian cu proprietati analgezice si antiinflamatorii. La concentratiile atinse dupa administrarea topica, benzidamina are o actiune moderata de anestezic si antibacterian local. Exercita un efect analgezic asupra durerilor de natura inflamatorie. Este eficienta dupa utilizarea locala datorita capacitatii sale de a penetra invelisul epitelial si de a atinge concentratii eficiente in tesuturile inflamate.
+    \n Benzidamina are o toxicitate foarte scazuta, de natura farmacodinamica, si nu produce modificari histopatologice semnificative. Marja de siguranta intre LD50 si o singura doza orala terapeutica este de 1000:1. Benzidamina nu afecteaza tractul gastrointestinal. Medicamentul nu prezinta efecte teratogene si nu interfera cu dezvoltarea normala a embrionului.
+    \n
+    \n Indicatii
+    \n  Vulvovaginite si cervicovaginite de etiologii variate, inclusiv cele datorate chimioterapiei sau radioterapiei. Profilactic pre- si postoperator in chirurgia ginecologica si in timpul perioadei puerperale. infectii bacteriene vaginale cauzate de Gardnerella vaginalis.
+    \n
+    \n Doze si mod de administrare
+    \n Se dizolva continutul a 1-2 plicuri intr-un litru de apa fiarta si racita. Se vor face 1-2 irigatii pe zi, sau conform indicatiilor medicului.
+    \n Medicamentul Tantum Rosa se poate folosi in doua moduri pentru irigare vaginala sau pentru spalare externa.
+    \n Irigarea vaginului: Pentru irigarea vaginului se foloseste cel mai bine irigatorul Tantum Rosa. Acesta este sigur in utilizare, realizat din material plastic, elastic si neted. Irigatorul se poale folosi de mai rnulte ori. Nu se livreaza impreuna cu medicamentul Tantum Rosa in acelasi ambalaj.
+    \n Se recomanda folosirea irigatorului exclusiv de o singura persoana. Fetele care nu au incepul viata sexuala nu trebuie sa foloseasca irigatorul Tantum Rosa, intrucat utilizarea acestuia poate duce la ruperea membranei himenului.
+    \n  Spalarea externa: Prin solutia Tantum Rosa se spala partile intime externe de 1-2 ori pe zi. Un asemenea tip de spalare se poale folosi (dar fara a face irigare vaginala) in perioada de inceput a lauziei, adica imediat dupa nastere. Medicul poate recomanda folosirea medicamenlului Tantum Rosa in tratamentul diferitelor tipuri de iritari interne ale aparalului de reproducere. Medicamentul Tantum Rosa sub forma de spalari externe poate fi recomandat si fetelor care nu si-au inceput viata sexuala.
+    \n
+    \n Contraindicatii
+    \n Hipersensibilitate la unul dintre componentii produsului.
+    \n
+    \n Reactii adverse
+    \n Nu s-au observat efecte nedorite datorita utilizarii de Tantum Rosa. Se va comunica medicului sau farmacistului aparitia oricarui efect advers.
+    \n
+    \n Masuri de precautie
+    \n Utilizarea indelungata a produsului poate determina fenomene de sensibilizare locala. In acest caz se va intrerupe tratamentul si se va consulta medicul pentru instituirea unui tratament corespunzator.
+    \n Sarcina si alaptarea
+    \n Produsul poate fi utilizat in timpul sarcinii si alaptarii numai la recomandarea medicului.
+    \n
+    \n Forma de prezentare
+    \n Cutie cu 5, 10 plicuri dublu stratificate din hartie/polipropilena a 9,45 g granule pentru solutie vaginala.</string>
+
+
+    <string name="medicament_n_0">ABAKTAL, comprimate</string>
+    <string name="medicament_p_0" formatted="false">Prospect
+    <strong>Compozitie </strong>O tableta contine 400 de mg de pefloxacina sub forma de dihidrat de mesilat.  O fiola (5 ml) contine 400 de mg de pefloxacina, sub forma de mesilat.
+    <strong>Actiune terapeutica </strong>Pefloxacina este un preparat antimicrobian semisintetic apartinand grupei chinolonelor. Are o actiune bactericida de inhibare a reproducerii bacteriene a adn, influentand, totodata, arn-ul si sinteza albuminelor bacteriene. Administrat oral, se resoarbe repede, atingand concentratia maxima dupa 90 de minute. Timpul de injumatatire biologica al pefloxacinei este de aproximativ 8 ore. Gratie volumului de distribuire mare, patrunde usor in tesuturi, organe si in fluidele corporale. De aceea, concentratia sa la nivelul valvei aortei si al celei mitrale, al muschiului inimii, al oaselor, al peritoneului si al lichidului peritoneal, al vezicii urinare, prostatei, al salivei si al sputei o depaseste pe cea din ser. Circa 60 % din pefloxacina este eliminata prin urina, aproximativ 30 % prin vezica biliara (in general nemodificata), partial si sub forma de substante derivate, cum ar fi dimetil pefloxacina, oxidul inactiv de pefloxacina si glucuronidul de pefloxacina. Pefloxacina are un spectru larg de actiune. Actioneaza asupra unui mare numar de microorganisme rezistente la alte antibiotice.  Germenii sensibili la pefloxacina sunt: escherichia coli, Klebsiella spp., Enterobacter spp., Serratia spp. Proteus mirabilis, speciile indol-pozitive de Proteus, Citrobacter spp. Salmonella spp., Shigella spp., Haemophilus spp., Staphylococcus spp. si neisseria gonorrhoeae. O sensibilitate medie a fost semnalata la Streptococcus spp., Pseudomonas spp., Acinetobacter spp., clostridium perfringens, Micoplasma spp. si Chlamydia spp. Rezistente s-au dovedit a fi microorganismele anaerobe gram negative de tipul Spirochaeta spp. si mycobacterium tuberculosis.
+    <strong><strong>Indicatii</strong></strong> Infectii cauzate de bacterii sensibile la pefloxacina: ale aparatului urinar; ale cailor respiratorii; ale nasului, gatului si urechilor; ale aparatului genital; ale stomacului si cailor hepatobiliare; ale oaselor si articulatiilor; ale pielii; septicemii si endocardite; ale meningelor.  Abaktal monodoza are urmatoarele indicatii  -infectii urinare inferioare necomplicate la femei;  -infectii gonococice necomplicate;  -&quot;diareea calatorului&quot;.
+    <strong>  Dozare si mod de administrare </strong> Doza medie de pefloxacina pentru adulti si copii peste 15 ani este de 800 de mg pe zi, indiferent daca medicamentul se administreaza oral sau parenteral. In cazul administrarii orale se vor lua cate 2 tablete pe zi: una dimineata, dupa micul dejun si a doua seara, dupa cina. Administrararea parenterala a Abaktalului se va face intravenos, sub forma de perfuzie sau intraperitoneal, intr-un interval de o ora, si anume de doua ori pe zi, dimineata si seara.  Continutul unei ampule (400 de mg) se va dilua in 250 de ml de solutie continand 5 % glucoza. Nu este permisa diluarea Abaktalului intr-o solutie de clorura de sodiu sau in orice alt tip de solutie care contine ioni de clor. In cazul infectiilor grave se poate incepe cu doze de 800 mg de Abaktal. Pacientilor prezentand boli ale ficatului li se vor administra, intr-un interval de o ora, 8 mg/kg corp sub forma de perfuzie, dupa cum urmeaza:  - o data pe zi (icter galben);  - la 36 de ore (ascita);  - la 48 de ore (icter galben si ascita).
+    <strong>Contraindicatii </strong>  Pefloxacina este contraindicata in cazul pacientilor hipersensibili la chinolone, al copiilor sub 15 ani, al gravidelor si al mamelor care alapteaza, precum si in acela al celor care prezinta carente de glucoza-6-fosfat-dehidrogenaza.
+    <strong>Masuri de precautie </strong>  Intrucat exista riscul producerii unei reactii fotosensibile, este de dorit ca in timpul terapiei cu Abaktal sa fie total evitata expunerea la ultraviolete.  In cazul bolnavilor care prezinta tulburari grave ale functiei hepatice trebuie adaptata doza.
+    <strong>Reactii adverse </strong>  Pot aparea tulburari digestive, mialgii sau artralgii, hipersensibilitate la lumina, tulburari neurologice (dureri de cap, ameteala), trombocitopenie (la doze mai mari de 1 600 de mg pe zi).</string>
+
+<string name="farmacie_sensiblu1">Sensiblu 2</string>
+    <string name="adresa_sensiblu1">Aleea Comertului Nr. 19 (Complex Micro)</string>
+    <string-array name="orar_sensiblu1">
+        <item>08:00 - 20:00</item>
+        <item>09:00 - 17:00</item>
+        <item>09:00 - 14:00</item>
+    </string-array>
+
+
+    <string name="farmacie_sensiblu2">Sensiblu 4</string>
+    <string name="adresa_sensiblu2">Str. Siderurgistilor, Bloc SD 3B, Parter</string>
+    <string-array name="orar_sensiblu2">
+        <item>09:00 - 21:00</item>
+        <item>09:00 - 21:00</item>
+        <item>09:00 - 14:00</item>
+    </string-array>
+
+    <string name="farmacie_sensiblu3">Sensiblu 8</string>
+    <string name="adresa_sensiblu3">Str. Brandusei nr.3 (Complexul Siretul) </string>
+    <string-array name="orar_sensiblu3">
+        <item>08:00 - 20:00</item>
+        <item>09:00 - 14:00</item>
+        <item>09:00 - 14:00</item>
+    </string-array>
+
+    <string name="farmacie_centrofarm">Centrofarm</string>
+    <string name="adresa_centrofarm">Strada Brailei Bl. A7-A8 parter) </string>
+    <string-array name="orar_centrofarm">
+        <item>08:30 - 22:00</item>
+        <item>08:30 - 22:00</item>
+        <item>09:00 - 21:00</item>
+    </string-array>
+
+    <string name="farmacie_caroldavila">Carol Davila</string>
+    <string name="adresa_caroldavila">Strada Domneasca Nr 13 </string>
+    <string-array name="orar_caroldavila">
+        <item>08:30 - 22:00</item>
+        <item>inchis</item>
+        <item>inchis</item>
+    </string-array>
+
+    <string name="farmacie_myosotis1">Farmacia Myosotis 1</string>
+    <string name="adresa_myosotis1">Str. Traian Vuia bl J2 </string>
+    <string-array name="orar_myosotis1">
+        <item>nonstop</item>
+        <item>nonstop</item>
+        <item>nonstop</item>
+    </string-array>
+
+    <string-array name="orar_undefined">
+        <item>In lucru</item>
+        <item>In lucru</item>
+        <item>In lucru</item>
+    </string-array>
+
+
+</resources>
