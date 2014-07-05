@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MediTrack.iml" filepath="$PROJECT_DIR$/MediTrack.iml" />
+      <module fileurl="file://$USER_HOME$/tools/google-play-services_lib/google-play-services_lib.iml" filepath="$USER_HOME$/tools/google-play-services_lib/google-play-services_lib.iml" />
       <module fileurl="file://$USER_HOME$/tools/adt-bundle-linux-x86-20131030/sdk/extras/google/google_play_services/libproject/google-play-services_lib/google-play-services_lib.iml" filepath="$USER_HOME$/tools/adt-bundle-linux-x86-20131030/sdk/extras/google/google_play_services/libproject/google-play-services_lib/google-play-services_lib.iml" />
+      <module fileurl="file://$USER_HOME$/tools/adt-bundle-linux-x86-20131030/sdk/extras/google/google_play_services/libproject/google-play-services_lib/google-play-services_lib1.iml" filepath="$USER_HOME$/tools/adt-bundle-linux-x86-20131030/sdk/extras/google/google_play_services/libproject/google-play-services_lib/google-play-services_lib1.iml" />
+      <module fileurl="file://$USER_HOME$/tools/adt-bundle-linux-x86-20131030/sdk/extras/google/google_play_services/libproject/google-play-services_lib/google-play-services_lib2.iml" filepath="$USER_HOME$/tools/adt-bundle-linux-x86-20131030/sdk/extras/google/google_play_services/libproject/google-play-services_lib/google-play-services_lib2.iml" />
     </modules>
   </component>
 </project>

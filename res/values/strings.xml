@@ -2,6 +2,12 @@
 <resources>
 <string name="app_name">MediTrack</string>
 
+<!--
+    <string name="sv_ip">192.168.1.57</string>
+    <string name="sv_port">30310</string>-->
+
+
+
     <string name="medicament_diazepam">Diazepam, comprimate</string>
             <!--&#xD&#xA-->
     <string name="descriere_diazepam" >Prospect\n
