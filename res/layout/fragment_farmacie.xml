@@ -1,253 +1,263 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-        >
-    <LinearLayout android:layout_width="fill_parent"
-                  android:layout_height="60dp"
-                  android:layout_alignParentBottom="true"
-                  android:background="@color/light_gray"
-                  android:id="@+id/bot" android:weightSum="1">
-
-        <ImageView android:layout_width="45dp"
-                   android:layout_height="45dp"
-                   android:src="@drawable/ic_locatie"
-                   android:layout_marginTop="10dp"
-                   android:layout_marginLeft="20dp"
-                   android:id="@+id/go_map_button"
-                   />
-    </LinearLayout>
-
-    <!--<ImageView android:layout_width="fill_parent"-->
-               <!--android:layout_height="match_parent"-->
-               <!--android:src="@drawable/box_top"-->
-               <!--android:layout_alignBottom="@id/nume_farmacie"-->
-            <!--&lt;!&ndash;/>&ndash;&gt; TODO-->
-
-
-    <ImageView
-            android:id="@+id/icon"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="15dp"
-            android:src="@drawable/ic_sensiblu"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="12dp"
-            android:padding="1dp"
-
-
-
-            />
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/icon"
-            android:id="@+id/nume_farmacie"
-            android:text="Sensiblu"
-            android:textSize="40sp"
-            android:layout_marginTop="20dp"
-            android:paddingBottom="20dp"
-            android:fontFamily="sans-serif-condensed"
-            android:layout_centerHorizontal="true"
-
-            />
-    <ScrollView android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:fillViewport="true"
-                android:layout_below="@id/icon"
-                android:layout_above="@id/bot"
-            >
-
-<RelativeLayout android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                >
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:id="@+id/adresa_titlu"
-              android:text="Adresa"
+                android:background="@color/bg_light_grey">
 
-              android:paddingLeft="25dp"
-              android:paddingBottom="10dp"
-              android:layout_marginTop="20dp"
-              android:textSize="30sp"
-              android:fontFamily="sans-serif-condensed"
-            />
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/adresa_titlu"
-              android:text="Strada pulii nr2."
-              android:paddingLeft="25dp"
-              android:textSize="15sp"
-              android:id="@+id/adresa_farmacie"
-            />
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:id="@+id/program_titlu"
-              android:text="Program"
-              android:layout_below="@id/adresa_farmacie"
-              android:paddingLeft="25dp"
-              android:paddingBottom="10dp"
-              android:layout_marginTop="20dp"
-              android:textSize="30sp"
-              android:fontFamily="sans-serif-condensed"
-            />
+    <!-- START CARD HEADER-->
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="@dimen/min_margin"
+                  android:background="@color/white"
+                  android:id="@+id/header_card">
+
+        <ImageView
+                android:id="@+id/farmacie_detail_icon"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_margin="10dp"
+                android:layout_width="@dimen/icon"
+                android:layout_height="@dimen/icon"
+                android:layout_gravity="center"
+                android:src="@color/green"/>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:orientation="vertical">
+
+            <com.neopixl.pixlui.components.textview.TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="20sp"
+                    android:layout_marginTop="6dp"
+                    android:id="@+id/item_detail_header"
+                    android:text="name-placeholder for big text"
+                    pixlui:copyandpaste="false"
+                    pixlui:clearclipboardcontent="true"
+                    pixlui:typeface="Roboto-Medium.ttf"/>
+
+            <com.neopixl.pixlui.components.textview.TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:textColor="@color/subheader_grey"
+                    android:id="@+id/item_detail_subheader"
+                    android:text="subheader-placeholder"
+                    pixlui:copyandpaste="false"
+                    pixlui:clearclipboardcontent="true"
+                    pixlui:typeface="Roboto-Thin.ttf"/>
+        </LinearLayout>
+    </LinearLayout>
+    <!--END CARD HEADER-->
+
+    <!--START CARD PROGRAM-->
+    <RelativeLayout android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/header_card"
+                  android:id="@+id/program_card"
+                  android:orientation="horizontal"
+                  android:background="@color/white"
+                  style="@style/marginLeftRightMin">
+
+        <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_program"
+                android:textColor="@color/subheader_grey"
+                android:textSize="18.5sp"
+                android:layout_margin="@dimen/min_margin"
+                android:text="Program"
+                pixlui:copyandpaste="false"
+                pixlui:clearclipboardcontent="true"
+                pixlui:typeface="Roboto-Light.ttf"/>
+
+        <View android:id="@+id/separator"
+              android:layout_below="@id/item_program"
+              android:background="@color/transparent_subheader_grey"
+              android:layout_width = "wrap_content"
+              android:layout_height="0.5dp"
+              android:layout_marginLeft="@dimen/min_margin"
+              android:layout_centerVertical ="true"/>
+
+        <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/separator"
+                android:id="@+id/item_program_subheader_lv"
+                android:textColor="@color/subheader_grey"
+                android:layout_margin="@dimen/min_margin"
+                android:text="L - V : placeholder"
+                pixlui:copyandpaste="false"
+                pixlui:clearclipboardcontent="true"
+                pixlui:typeface="Roboto-Light.ttf"/>
+
+        <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_program_subheader_lv"
+                android:id="@+id/item_program_subheader_s"
+                android:layout_marginLeft="@dimen/min_margin"
+                android:textColor="@color/subheader_grey"
+                android:text="S : placeholder"
+                pixlui:copyandpaste="false"
+                pixlui:clearclipboardcontent="true"
+                pixlui:typeface="Roboto-Light.ttf"/>
+
+        <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/item_program_subheader_s"
+                android:id="@+id/item_program_subheader_d"
+                android:layout_margin="@dimen/min_margin"
+                android:textColor="@color/subheader_grey"
+                android:text="D : placeholder"
+                pixlui:copyandpaste="false"
+                pixlui:clearclipboardcontent="true"
+                pixlui:typeface="Roboto-Light.ttf"/>
+    </RelativeLayout>
+    <!--END CARD PROGRAM-->
+
+    <!--START CARD COMPENSAT-->
+    <RelativeLayout android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/compensat_card"
+                    android:layout_below="@+id/program_card"
+                    android:orientation="horizontal"
+                    android:background="@color/white"
+                    android:layout_margin="@dimen/min_margin">
+
+        <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_compensat"
+                android:textColor="@color/subheader_grey"
+                android:textSize="18.5sp"
+                android:layout_margin="@dimen/min_margin"
+                android:text="Compensat"
+                pixlui:copyandpaste="false"
+                pixlui:clearclipboardcontent="true"
+                pixlui:typeface="Roboto-Light.ttf"/>
+
+        <View android:id="@+id/separator2"
+              android:layout_below="@id/item_compensat"
+              android:background="@color/transparent_subheader_grey"
+              android:layout_width = "wrap_content"
+              android:layout_height="0.5dp"
+              android:layout_marginLeft="@dimen/min_margin"
+              android:layout_centerVertical ="true"/>
+
+        <ImageView
+                android:id="@+id/da_compensat"
+                android:layout_below="@id/separator2"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_margin="@dimen/min_margin"
+                android:layout_width="@dimen/small_icon"
+                android:layout_height="@dimen/small_icon"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_da_compensat"/>
+
+        <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_da_compensat"
+                android:layout_margin="@dimen/min_margin"
+                android:layout_alignTop="@+id/da_compensat"
+                android:layout_toRightOf="@+id/da_compensat"
+                android:textColor="@color/subheader_grey"
+                android:text="x persoane spun ca da"
+                pixlui:copyandpaste="false"
+                pixlui:clearclipboardcontent="true"
+                pixlui:typeface="Roboto-Light.ttf"/>
+
+        <ImageView
+                android:id="@+id/nu_compensat"
+                android:layout_below="@id/da_compensat"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_margin="@dimen/min_margin"
+                android:layout_width="@dimen/small_icon"
+                android:layout_height="@dimen/small_icon"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_nu_compensat"/>
+
+        <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_nu_compensat"
+                android:layout_margin="@dimen/min_margin"
+                android:layout_alignTop="@+id/nu_compensat"
+                android:layout_toRightOf="@+id/nu_compensat"
+                android:textColor="@color/subheader_grey"
+                android:text="x persoane spun ca nu"
+                pixlui:copyandpaste="false"
+                pixlui:clearclipboardcontent="true"
+                pixlui:typeface="Roboto-Light.ttf"/>
+    </RelativeLayout>
+    <!--END CARD COMPENSAT-->
 
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/program_titlu"
-              android:paddingLeft="25dp"
-              android:text="Luni:"
-              android:id="@+id/luni"
-            />
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/program_titlu"
-              android:layout_toRightOf="@id/luni"
-              android:paddingLeft="5dp"
-              android:text="22:00-15:30"
-              android:id="@+id/oraluni"
-            />
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/luni"
-              android:paddingLeft="25dp"
-              android:text="Marti:"
-              android:id="@+id/marti"
-            />
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/oraluni"
-              android:layout_toRightOf="@id/marti"
-              android:paddingLeft="5dp"
-              android:text="22:00-15:30"
-              android:id="@+id/oramarti"
-            />
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/marti"
-              android:paddingLeft="25dp"
-              android:text="Miercuri:"
-              android:id="@+id/miercuri"
-            />
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/oramarti"
-              android:layout_toRightOf="@id/miercuri"
-              android:paddingLeft="5dp"
-              android:text="22:00-15:30"
-              android:id="@+id/oramiercuri"
-            />
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/miercuri"
-              android:paddingLeft="25dp"
-              android:text="Joi:"
-              android:id="@+id/joi"
-            />
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/oramiercuri"
-              android:layout_toRightOf="@id/joi"
-              android:paddingLeft="5dp"
-              android:text="22:00-15:30"
-              android:id="@+id/orajoi"
-            />
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/joi"
-              android:paddingLeft="25dp"
-              android:text="Vineri:"
-              android:id="@+id/vineri"
-            />
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/orajoi"
-              android:layout_toRightOf="@id/vineri"
-              android:paddingLeft="5dp"
-              android:text="22:00-15:30"
-              android:id="@+id/oravineri"
-            />
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/vineri"
-              android:paddingLeft="25dp"
-              android:layout_marginTop="10dp"
-              android:text="Sambata:"
-              android:id="@+id/sambata"
-            />
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/oravineri"
-              android:layout_toRightOf="@id/sambata"
-              android:paddingLeft="5dp"
-              android:text="22:00-15:30"
-              android:id="@+id/orasambata"
-              android:layout_marginTop="10dp"
-            />
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/sambata"
-              android:paddingLeft="25dp"
-              android:text="Duminica:"
-              android:id="@+id/duminica"
-            />
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_below="@id/orasambata"
-              android:layout_toRightOf="@id/duminica"
-              android:paddingLeft="5dp"
-              android:text="22:00-15:30"
-              android:id="@+id/oraduminica"
-            />
-</RelativeLayout>
-    </ScrollView>
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="Locatie indisponibila"
-              android:layout_alignParentBottom="true"
-              android:layout_centerHorizontal="true"
-              android:id="@+id/locatie"
-              android:textSize="15sp"
-              android:layout_marginTop="5dp"
-              android:layout_marginBottom="5dp"
-            />
+    <!--START CARD RUTE-->
+    <RelativeLayout android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rute_card"
+                    android:layout_below="@+id/compensat_card"
+                    android:orientation="horizontal"
+                    android:background="@color/white"
+                    style="@style/marginLeftRightMin">
 
+        <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_rute"
+                android:textColor="@color/subheader_grey"
+                android:textSize="18.5sp"
+                android:layout_margin="@dimen/min_margin"
+                android:text="Rute"
+                pixlui:copyandpaste="false"
+                pixlui:clearclipboardcontent="true"
+                pixlui:typeface="Roboto-Light.ttf"/>
 
+        <View android:id="@+id/separator3"
+              android:layout_below="@id/item_rute"
+              android:background="@color/transparent_subheader_grey"
+              android:layout_width = "wrap_content"
+              android:layout_height="0.5dp"
+              android:layout_marginLeft="@dimen/min_margin"
+              android:layout_centerVertical ="true"/>
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="Elibereaza compensat"
-              android:layout_above="@id/locatie"
-              android:layout_centerHorizontal="true"
-              android:id="@+id/compensatie"
-              android:textSize="15sp"
-              android:layout_alignStart="@id/locatie"
-              android:layout_marginTop="5dp"
-            />
+        <ImageView
+                android:id="@+id/go_harta"
+                android:layout_below="@id/separator3"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_margin="@dimen/min_margin"
+                android:layout_width="@dimen/small_icon"
+                android:layout_height="@dimen/small_icon"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_go_map"/>
 
-    <ImageView android:layout_width="20dp"
-               android:layout_height="20dp"
-               android:layout_toLeftOf="@id/locatie"
-               android:layout_alignParentBottom="true"
-               android:src="@drawable/green"
-               android:layout_marginRight="2dp"
-               android:id="@+id/locatie_buton"
-               android:layout_marginBottom="5dp"
-
-            />
-    <ImageView android:layout_width="20dp"
-               android:layout_height="20dp"
-               android:layout_toLeftOf="@id/compensatie"
-               android:layout_above="@id/locatie_buton"
-               android:src="@drawable/green"
-               android:layout_marginRight="2dp"
-               android:id="@+id/compensat_buton"
-            />
+        <com.neopixl.pixlui.components.textview.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_go_map"
+                android:layout_margin="@dimen/min_margin"
+                android:layout_alignTop="@+id/go_harta"
+                android:layout_toRightOf="@+id/go_harta"
+                android:textColor="@color/subheader_grey"
+                android:text="distanta de x km"
+                pixlui:copyandpaste="false"
+                pixlui:clearclipboardcontent="true"
+                pixlui:typeface="Roboto-Light.ttf"/>
+    </RelativeLayout>
+    <!--END CARD RUTE-->
 
 
 </RelativeLayout>

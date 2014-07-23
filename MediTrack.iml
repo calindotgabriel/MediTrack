@@ -16,8 +16,11 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="android-support-v4" level="project" />
+    <orderEntry type="library" name="com.nhaarman.listviewanimations:library:2.6.0" level="project" />
+    <orderEntry type="library" name="pixlui-1-0-5" level="project" />
     <orderEntry type="module" module-name="google-play-services_lib" />
-    <orderEntry type="library" name="google-play-services" level="project" />
+    <orderEntry type="library" name="google-play-services1" level="project" />
+    <orderEntry type="library" name="picasso-2.3.3" level="project" />
   </component>
 </module>
 
