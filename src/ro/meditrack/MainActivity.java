@@ -1,6 +1,7 @@
 package ro.meditrack;
 
 import android.app.*;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,19 +13,17 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import ro.meditrack.adapters.DrawerItemAdapter;
-import ro.meditrack.db.DatabaseHandler;
 import ro.meditrack.detectors.GpsTracker;
 import ro.meditrack.detectors.InternetConnectionDetector;
+import ro.meditrack.exception.GsonInstanceNullException;
 import ro.meditrack.gson.GsonClient;
+import ro.meditrack.gson.GsonHandler;
 import ro.meditrack.model.Farmacie;
 import ro.meditrack.model.Item;
+import ro.meditrack.model.ItemInterface;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,19 +32,11 @@ import java.util.List;
  */
 public class MainActivity extends Activity {
 
-    KeyStore keyStore;
-    private String TAG = "MainActivity";
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-    private DrawerItemAdapter adapter;
-    private ArrayList<Item> drawerItems;
-    private GpsTracker gpsTracker;
-    private List<Farmacie> pharmacies;
-    private ProgressDialog pDialog;
-    private GsonClient mClient;
-    private DatabaseHandler db = new DatabaseHandler(this);
-
+    private ArrayList<ItemInterface> drawerItems;
+    private Context mCtx;
 
 
     @Override
@@ -53,18 +44,16 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        mCtx = this;
+
         initializeLayout();
         setActionBar();
         addItemsToDrawer();
         initializeAdapter();
         initializeDrawerToggle();
-        alertNoInternet();
-        startGps();
 
-        if (db.isFarmaciiTableEmpty())
-            contactGson();
-        else
-            displayView(0);
+        displayView(0);
+
     }
 
 
@@ -85,22 +74,17 @@ public class MainActivity extends Activity {
 
 
     public void addItemsToDrawer() {
-        drawerItems = new ArrayList<Item>();
-        Item farmacii = new Item("Farmacii");
-        Item medicamente = new Item("Medicamente");
-        Item harta = new Item("Harta");
-        Item contact = new Item("Contact de urgenta");
-        drawerItems.add(farmacii);
-        drawerItems.add(medicamente);
-        drawerItems.add(harta);
-        drawerItems.add(contact);
+        drawerItems = new ArrayList<ItemInterface>();
+        drawerItems.add(new Item("Farmacii"));
+        drawerItems.add(new Item("Medicamente"));
+        drawerItems.add(new Item("Harta"));
+        drawerItems.add(new Item("Contact de urgenta"));
     }
 
 
     public void initializeAdapter() {
-        adapter = new DrawerItemAdapter(getApplicationContext(), drawerItems);
+        DrawerItemAdapter adapter = new DrawerItemAdapter(mCtx, drawerItems);
         mDrawerList.setAdapter(adapter);
-        //drawerItems.clear();
     }
 
 
@@ -122,74 +106,19 @@ public class MainActivity extends Activity {
     }
 
 
-    public void contactGson() {
-        new LoadGsonPharmaciesTask().execute("Querying");
-    }
-
-    class LoadGsonPharmaciesTask extends AsyncTask<String, Integer, List<Farmacie>> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            displayView(-1);
-        }
-
-        @Override
-        protected List<Farmacie> doInBackground(String... params) {
-
-            startGson();
-            mClient = GsonClient.getSimpleInstance();
-
-            do {
-                pharmacies = mClient.getPharmacies();
-            } while (pharmacies == null);
-
-            return pharmacies;
-        }
-
-        @Override
-        protected void onPostExecute(List<Farmacie> pharmacies) {
-            super.onPostExecute(pharmacies);
-
-            for (Farmacie f : pharmacies) {
-                f.setIcon(R.drawable.ic_sensiblu);
-                db.addFarmacie(f);
-            }
-            db.close();
-
-            displayView(0);
-        }
-    }
-
-
-    public void startGson() {
-        final InputStream inputStream = getResources().openRawResource(R.raw.android);
-
-        startListening(inputStream);
-        GsonClient.getInstance(keyStore).sendInfo("Aplicatia MediTrack comunica cu tine, server!",
-                gpsTracker.getLatitude(), gpsTracker.getLongitude());
-    }
-
-
-
     public void displayView(int position) {
         boolean showMap = true;
 
-        Fragment hartaFragment = getFragmentManager().findFragmentById(R.id.map);
-        if (hartaFragment != null)
-            if (hartaFragment.isVisible()) {
-                /*FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.remove(hartaFragment);
-                ft.commit();*/
-                showMap = false;
-            }
+        if (position == 2) {
+            Fragment hartaFragment = getFragmentManager().findFragmentById(R.id.map);
+            if (hartaFragment != null)
+                if (hartaFragment.isVisible()) {
+                    showMap = false;
+                }
+        }
 
         Fragment fragment = null;
         switch (position) {
-/*            case -2:
-                fragment = new NoPharmaciesFragment();*/
-            case -1:
-                fragment = new LoadingFragment();
-                break;
             case 0:
                 fragment = new FarmaciiFragment();
                 break;
@@ -208,54 +137,21 @@ public class MainActivity extends Activity {
                 fragment = new ContactFragment();
                 break;
             default:
-                Toast.makeText(getApplicationContext(), "Ai dat click pe " + drawerItems.get(position).getName()
+                Toast.makeText(mCtx, "Ai dat click pe " + drawerItems.get(position).getItemDescription()
                         + " cu pozitia " + position
                         + " care este inca in lucru !", Toast.LENGTH_SHORT).show();
         }
 
 
-        if (fragment != null) { //TODO glabalize fragmentmanager
+        if (fragment != null) {
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.frame_container, fragment).commit();
 
             checkAndCloseDrawer(position);
-
         }
     }
 
-    public void alertNoInternet() {
-        InternetConnectionDetector net = new InternetConnectionDetector(this);
-        if (!net.isConnectingToInternet()) {
-            Toast.makeText(this, "No internet connection!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void startListening(InputStream inputStream) {
-
-        KeyStore localTrustStore;
-
-        try {
-            localTrustStore = KeyStore.getInstance("BKS");
-            localTrustStore.load(inputStream, "123456".toCharArray());
-            this.keyStore = localTrustStore;
-
-        } catch (KeyStoreException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } catch (CertificateException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-    }
-
-    public void startGps() {
-        gpsTracker = new GpsTracker(this);
-        if (!gpsTracker.canGetLocation())
-            Toast.makeText(this, "No connection detected, please turn GPS on!", Toast.LENGTH_SHORT).show();
-    }
 
 
     @Override
@@ -264,7 +160,6 @@ public class MainActivity extends Activity {
         Fragment currentFragment = getFragmentManager().findFragmentById(R.id.frame_container);
 
         if (currentFragment instanceof FarmacieDetailsFragment) {
-//            super.onBackPressed();
 
             Fragment fragment = new FarmaciiFragment();
 
@@ -282,8 +177,6 @@ public class MainActivity extends Activity {
         mDrawerList.setSelection(position);
         mDrawerLayout.closeDrawer(mDrawerList);
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -308,23 +201,7 @@ public class MainActivity extends Activity {
     }
 
 
-/*
-    @Override
-    public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.refresh: {
-                contactGson();
-                displayView(-1);
-                DatabaseHandler db = new DatabaseHandler(getApplicationContext()); //TODO globalize db Handler
-                db.dropDB();
-                return true;
-            }
 
-            default:
-            return false;
-
-        }
-    }*/
 
     private class SlideMenuClickListener implements
             ListView.OnItemClickListener {

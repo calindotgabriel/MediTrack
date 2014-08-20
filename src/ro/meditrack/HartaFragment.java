@@ -13,7 +13,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.*;
-import ro.meditrack.db.DatabaseHandler;
 import ro.meditrack.detectors.GpsTracker;
 import ro.meditrack.model.Farmacie;
 
@@ -34,7 +33,6 @@ public class HartaFragment extends Fragment {
 
     private ArrayList<Farmacie> farmacii;
 
-    private MapFragment fragment;
 
     /*
        Setting the title of the action bar
@@ -64,7 +62,7 @@ public class HartaFragment extends Fragment {
         bundle.putString("adresa_farmacie", farmacieAleasa.getVicinity());
         bundle.putDouble("lat_farmacie", farmacieAleasa.getLat());
         bundle.putDouble("lng_farmacie", farmacieAleasa.getLng());
-        bundle.putInt("compensat_farmacie", farmacieAleasa.getCompensat());
+//        bundle.putInt("compensat_farmacie", farmacieAleasa.getCompensat());
         bundle.putString("ph_no_farmacie", farmacieAleasa.getPhNumber());
         bundle.putString("url_farmacie", farmacieAleasa.getPhNumber());
         bundle.putBoolean("open_now_farmacie", farmacieAleasa.getOpenNow());
@@ -118,9 +116,9 @@ public class HartaFragment extends Fragment {
             gps.setLongitude(currentLongitude);
 
 
-        } else gps.showGpsSettingsAlert();
+        }
 
-        addFarmaciiMarkers();
+//        addFarmaciiMarkers();
 
         Bundle bundle = getArguments();
 
@@ -146,19 +144,19 @@ public class HartaFragment extends Fragment {
     /*
     Adding markers on the farmacies that are in the database
 ***/
-    public void addFarmaciiMarkers() {
+    /*public void addFarmaciiMarkers() {
         DatabaseHandler db = DatabaseHandler.getInstance(getActivity());
         List<Farmacie> listaFarmacii = db.getAllFarmacii();
         farmacii = new ArrayList<Farmacie>(listaFarmacii);
 
 
-/*
+*//*
         map.addMarker(new MarkerOptions()
                 .title("You are here!")
 //                    .snippet("")
                 .position(new LatLng(currentLatitude, currentLongitude))
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
-*/
+*//*
 
 
         for (Farmacie f : farmacii) {
@@ -175,8 +173,8 @@ public class HartaFragment extends Fragment {
                     .icon(colorBitmapDescriptor));
         }
 
-
-    }
+*/
+//    }
 
     public GoogleMap getGoogleMap() {
         if (map == null && getActivity() != null && getActivity().getFragmentManager() != null) {

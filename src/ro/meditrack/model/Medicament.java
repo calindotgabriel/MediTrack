@@ -1,9 +1,11 @@
 package ro.meditrack.model;
 
+import java.io.Serializable;
+
 /**
  * Created by motan on 3/8/14.
  */
-public class Medicament {
+public class Medicament implements Serializable, ItemInterface {
 
     private int id;
     private String name;
@@ -28,8 +30,7 @@ public class Medicament {
     }
 
 
-
-    public String getName() {
+    public String getItemDescription() {
         return name;
     }
 
@@ -43,5 +44,9 @@ public class Medicament {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }

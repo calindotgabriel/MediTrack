@@ -42,7 +42,7 @@ public class MedicamentAdapter extends ArrayAdapter<Medicament> {
             TextView medicamentText = (TextView) convertView.findViewById(R.id.dropdown_item_medicament);
 
             if (medicamentText != null) {
-                medicamentText.setText(medicament.getName());
+                medicamentText.setText(medicament.getItemDescription());
             }
         }
         return convertView;
@@ -59,7 +59,7 @@ public class MedicamentAdapter extends ArrayAdapter<Medicament> {
             if (constraint != null) {
                 suggestions.clear();
                 for (Medicament medicament : medicamenteAll) {
-                    if (medicament.getName().toLowerCase().startsWith(constraint.toString().toLowerCase())) {
+                    if (medicament.getItemDescription().toLowerCase().startsWith(constraint.toString().toLowerCase())) {
                         suggestions.add(medicament);
                     }
                 }

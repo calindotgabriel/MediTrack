@@ -1,5 +1,6 @@
 package ro.meditrack.gson;
 
+import android.content.Context;
 import android.util.Log;
 import com.google.code.gsonrmi.Parameter;
 import com.google.code.gsonrmi.RpcError;
@@ -15,7 +16,11 @@ import com.google.code.gsonrmi.transport.tcp.TcpProxy;
 import com.google.code.gsonrmi.transport.tcp.TcpProxyFactory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
 import ro.meditrack.Keys;
+import ro.meditrack.db.DbHelper;
+import ro.meditrack.exception.GsonInstanceNullException;
 import ro.meditrack.model.Farmacie;
 
 import java.net.InetSocketAddress;
@@ -33,12 +38,20 @@ public class GsonClient {
     private static GsonClient ourInstance ;
     private Gson gson;
     private Transport transport;
+
     private List<Farmacie> pharmacies;
+
+    private static String SERVER_IP = "192.168.0.104";// Todo use file
+    private static String SERVER_PORT = "30310";
+
+    private Context mContext;
+
+    private DbHelper dbHelper;
 
 
 
     public static GsonClient getInstance(KeyStore keyStore) {
-        if (ourInstance==null){
+        if (ourInstance == null){
 
             ourInstance = new GsonClient();
             ourInstance.gson = new GsonBuilder()
@@ -53,13 +66,14 @@ public class GsonClient {
                                                 Arrays.asList(inetSocketAddress);
 
 
-
             TcpProxy tcpProxy;
-            tcpProxy = TcpProxyFactory.reflectTcpProxy(AndroidSecureTcpProxy.class, listeningAddresses, ourInstance.transport,
+            tcpProxy = TcpProxyFactory.reflectTcpProxy
+                    (AndroidSecureTcpProxy.class,
+                    listeningAddresses,
+                    ourInstance.transport,
                     ourInstance.gson, keyStore);
 
             tcpProxy.start();
-
 
             RmiService rmiService = null;
 
@@ -67,7 +81,6 @@ public class GsonClient {
                 rmiService = new RmiService(ourInstance.transport, ourInstance.gson);
 
                 rmiService.start();
-
 
                 URI uri = null;
 
@@ -90,65 +103,96 @@ public class GsonClient {
     }
 
 
-    public static GsonClient getSimpleInstance() {
+    public static GsonClient getSimpleInstance() throws GsonInstanceNullException{
+        if (ourInstance == null)
+           throw new GsonInstanceNullException();
         return ourInstance;
     }
 
     private GsonClient() {
     }
 
+    private Route to;
+    private URI from;
 
-    public String sendInfo(String text, double lat, double lng){
+    public void processURIs () {
 
-        Route to=null;
         try {
-            to=new Route(new URI("tcp://192.168.0.104:30310"),new URI("rmi:server"));
+            to = new Route
+                    (new URI("tcp://" + SERVER_IP + ":" + SERVER_PORT),
+                            new URI("rmi:server"));
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
 
-        URI from=null;
         try {
-            from=new URI("rmi:client");
+            from = new URI("rmi:client");
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+    }
 
+    public void getPharmaciesFromSv(String text, double lat, double lng){
+        processURIs();
 
         Call basic = new Call(to, "test", text, lat, lng);  // send to the method 'test' of server
-
         Call ack = basic.callback(from, "ack"); // 'test' returns to 'ack'
 
-
         ack.send(transport);
-//          basic.send(transport);
-
-        return null;
     }
+
+    public void contactCompensatField(String googleId, boolean state) {
+        processURIs();
+
+        Call basic = new Call(to, "setCompensatField", googleId, state);
+        Call response = basic.callback(from, "gotCompensatResponse");
+
+        response.send(transport);
+    }
+
 
     @RMI
     public void ack (List<Farmacie> pharmacies, RpcError rpcError){
-        // acum au ajuns stringurile
-
 
         this.pharmacies = pharmacies;
 
-        for (Farmacie pharmacy : pharmacies) {
-            Log.v(TAG, pharmacy.getName() + " - " + pharmacy.getVicinity() + " - " +
-                    pharmacy.getLat() + " / " + pharmacy.getLng() + " - " + pharmacy.getOpenNow()
+        for (Farmacie f : pharmacies) {
+            Log.v(TAG, f.getName() + " - " + f.getVicinity() + " - " +
+                    f.getLat() + " / " + f.getLng() + " - " + f.getOpenNow()
+                            + " - " + f.getPlacesId()
             );
         }
-
 }
 
+    @RMI
+    public void gotCompensatResponse(Farmacie f, RpcError rpcError) {
+
+        RuntimeExceptionDao<Farmacie, Integer> mDao =
+                getHelper().getRuntimeDao();
+
+        mDao.update(f);
+
+    }
 
 
     public List<Farmacie> getPharmacies() {
             return pharmacies;
     }
 
+    public void clearPharmacies() {
+        pharmacies = null;
+    }
 
+    public void setContext(Context mContext) {
+        this.mContext = mContext;
+    }
 
+    private DbHelper getHelper() {
+        if (dbHelper == null) {
+            dbHelper = OpenHelperManager.getHelper(mContext, DbHelper.class);
+        }
+        return dbHelper;
+    }
 
 
 }

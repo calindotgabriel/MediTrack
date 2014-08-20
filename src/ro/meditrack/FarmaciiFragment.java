@@ -1,19 +1,28 @@
 package ro.meditrack;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.ListFragment;
+import android.app.*;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.*;
 import android.widget.ListView;
 import android.widget.Toast;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
+import com.nhaarman.listviewanimations.swinginadapters.prepared.SwingRightInAnimationAdapter;
 import ro.meditrack.adapters.FarmaciiAdapter;
-import ro.meditrack.db.DatabaseHandler;
+import ro.meditrack.db.DbHelper;
+import ro.meditrack.detectors.GpsTracker;
+import ro.meditrack.detectors.InternetConnectionDetector;
+import ro.meditrack.exception.GsonInstanceNullException;
+import ro.meditrack.gson.GsonClient;
+import ro.meditrack.gson.GsonHandler;
 import ro.meditrack.model.Farmacie;
+import ro.meditrack.shared.Holder;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Pharmacies fragment.
@@ -27,58 +36,48 @@ public class FarmaciiFragment extends ListFragment {
 
     private boolean showOnlyCompensat = false;
     private boolean showOnlyNonstop = false;
-
     private int compensatClickCount = 1;
     private int nonstopClickCount = 1;
 
+    private Menu optionsMenu;
 
-    public void setAbTitle() {
-        getActivity().getActionBar().setTitle("Farmacii");
-    }
+    private double lat;
+    private double lng;
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_farmacii, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
+    private Activity parentActivity;
 
+    private GsonClient mClient;
 
-    public void initializeAdapter() {
-        adapter = new FarmaciiAdapter(getActivity().getApplicationContext(), farmacii, showOnlyCompensat, showOnlyNonstop);
-        setListAdapter(adapter);
-    }
+    private DbHelper dbHelper;
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        setAbTitle();
-
-    }
-
-    public void getPharmaciesFromDb() {
-        DatabaseHandler db = new DatabaseHandler(getActivity());
-        farmacii = (ArrayList) db.getAllFarmacii();
-
-        Log.d("FarmaciiFragment", "Queried pharmacies from DB!");
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-//        populateFarmaciiFromDB();
-        // ar trebui aici sa fac call la server
-/*
-        final InputStream inputStream = getResources().openRawResource(R.raw.android);
-        startGps();*/
+        parentActivity = getActivity();
 
 
-//        GsonClient gson = GsonClient.getSimpleInstance();
-//        Log.v("GsonClient", "QUERYING MEDIPLACES IN FARMACIIFRAGMENT!");
+        farmacii = (ArrayList) getHelper().getRuntimeDao().queryForAll();
+
+        adapter = new FarmaciiAdapter(parentActivity, farmacii, showOnlyCompensat, showOnlyNonstop);
+        setListAdapter(adapter);
+
+        hasInternet();
+        hasGps();
 
 
-        getPharmaciesFromDb();
+        try {
+            new GsonHandler(parentActivity.getResources().openRawResource(R.raw.android));
+            mClient = GsonClient.getSimpleInstance();
+            mClient.setContext(parentActivity);
 
-        initializeAdapter();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        if (farmacii.size() == 0)
+            new LoadPharmacies().execute();
 
 
         return super.onCreateView(inflater, container, savedInstanceState);
@@ -90,124 +89,204 @@ public class FarmaciiFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
 
         farmacieAleasa = farmacii.get(position);
-
-        Fragment fragment = new FarmacieDetailsFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("nume_farmacie", farmacieAleasa.getName());
-        bundle.putStringArray("orar_farmacie", farmacieAleasa.getOpenHours());
-        bundle.putString("adresa_farmacie", farmacieAleasa.getVicinity());
-        bundle.putDouble("lat_farmacie", farmacieAleasa.getLat());
-        bundle.putDouble("lng_farmacie", farmacieAleasa.getLng());
-        bundle.putInt("compensat_farmacie", farmacieAleasa.getCompensat());
-        bundle.putString("ph_no_farmacie", farmacieAleasa.getPhNumber());
-        bundle.putString("url_farmacie", farmacieAleasa.getPhNumber());
-        bundle.putBoolean("open_now_farmacie", farmacieAleasa.getOpenNow());
+        bundle.putSerializable(Keys.FARMACIE_KEY, farmacieAleasa);
 
 
-        Log.d("COORDS 1", farmacieAleasa.getLat() + " / " + farmacieAleasa.getLng());
-
-
-        fragment.setArguments(bundle);
+        Fragment farmacieDetailsFragment = new FarmacieDetailsFragment();
+        farmacieDetailsFragment.setArguments(bundle);
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .addToBackStack(null)
-                .replace(R.id.frame_container, fragment).commit();
+                .replace(R.id.frame_container, farmacieDetailsFragment).commit();
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) parentActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         switch (item.getItemId()) {
-            case R.id.filtru_compensat:
+/*            case R.id.filtru_compensat:
                 compensatClickCount++;
 
                 if (compensatClickCount % 2 == 0) {
                     showOnlyCompensat = true;
-                    Toast.makeText(getActivity(), "Compensat On", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(parentActivity, "Compensat On", Toast.LENGTH_SHORT).show();
                 } else {
                     showOnlyCompensat = false;
-                    Toast.makeText(getActivity(), "Compensat Off", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(parentActivity, "Compensat Off", Toast.LENGTH_SHORT).show();
                 }
 
                 onCreateView(inflater, null, null);
                 return true;
-            case R.id.filtru_nonstop:
+            case R.id.filtru_nonstop: //TODO
                 nonstopClickCount++;
 
                 if (nonstopClickCount % 2 == 0) {
                     showOnlyNonstop = true;
-                    Toast.makeText(getActivity(), "Open On", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(parentActivity, "Open On", Toast.LENGTH_SHORT).show();
                 } else {
                     showOnlyNonstop = false;
-                    Toast.makeText(getActivity(), "Open Off", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(parentActivity, "Open Off", Toast.LENGTH_SHORT).show();
                 }
 
                 onCreateView(inflater, null, null);
-                return true;
+                return true;*/
+
             case R.id.refresh:
-                // TODO
+
+                //DB IN CREATE MODE
+                if (mClient != null)
+                    mClient.clearPharmacies();
+
+                new LoadPharmacies().execute();
+
                 return true;
+
 
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+    public void setRefreshActionButtonState(final boolean refreshing) {
+        if (optionsMenu != null) {
+            final MenuItem refreshItem = optionsMenu
+                    .findItem(R.id.refresh);
+            if (refreshItem != null) {
+                if (refreshing) {
+                    refreshItem.setActionView(R.layout.actionbar_indeterminate_progress);
+                } else {
+                    refreshItem.setActionView(null);
+                }
+            }
+        }
+    }
+
+
+    class LoadPharmacies extends AsyncTask<Void, Void, List<Farmacie>> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            mClient.clearPharmacies();
+
+            setRefreshActionButtonState(true);
+        }
+
+        @Override
+        protected List<Farmacie> doInBackground(Void... params) {
+
+            mClient.getPharmaciesFromSv("Querying...", lat, lng);
+
+            List<Farmacie> pharmacies;
+
+            do {
+                pharmacies = mClient.getPharmacies();
+            } while (pharmacies == null);
+
+            return pharmacies;
+        }
+
+        @Override
+        protected void onPostExecute(List<Farmacie> pharmacies) {
+            super.onPostExecute(pharmacies);
+
+            RuntimeExceptionDao<Farmacie, Integer> mDao = getHelper().getRuntimeDao();
+
+            getHelper().resetDb();
+
+            for (Farmacie f : pharmacies) {
+                f.setIcon(R.drawable.ic_da_compensat);
+                mDao.create(f);
+            }
+
+            setRefreshActionButtonState(false);
+
+            adapter.updatePharmacyList(pharmacies);
+        }
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        SwingRightInAnimationAdapter swingRightInAnimationAdapter
+                = new SwingRightInAnimationAdapter(adapter);
+        swingRightInAnimationAdapter.setAbsListView(getListView());
+
+        getListView().setAdapter(swingRightInAnimationAdapter);
+
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        this.optionsMenu = menu;
+        inflater.inflate(R.menu.menu_farmacii, menu);
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        ActionBar ab = parentActivity.getActionBar();
+        if (ab != null)
+            ab.setTitle("Farmacii");
+    }
+
+
+
+    public boolean hasGps() {
+        GpsTracker gpsTracker = new GpsTracker(parentActivity);
+        if (gpsTracker.canGetLocation()) {
+            lat = gpsTracker.getLatitude();
+            lng = gpsTracker.getLongitude();
+            Toast.makeText(parentActivity, lat + " / " + lng, Toast.LENGTH_SHORT).show();
+            Holder.lat = lat;
+            Holder.lng = lng;
+            return true;
+        }
+        else {
+            Toast.makeText(parentActivity, "No GPS! Cannot query pharmacies!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+
+    public boolean hasInternet() {
+        InternetConnectionDetector net = new InternetConnectionDetector(parentActivity);
+        if (net.isConnectingToInternet())
+            return true;
+        else {
+            Toast.makeText(parentActivity, "No internet connection!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (dbHelper != null) {
+            OpenHelperManager.releaseHelper();
+            dbHelper = null;
+        }
+    }
+
+    private DbHelper getHelper() {
+        if (dbHelper == null) {
+            dbHelper = OpenHelperManager.getHelper(parentActivity, DbHelper.class);
+        }
+        return dbHelper;
+    }
 }
 
 
-// ***************************************** DUMP *********************************************************************
-
-/*    public void populateFarmaciiFromDB() {
-        Resources resources = getResources();
-        // We are using resources, the goal is to use a web server.
-
-        DatabaseHandler db = DatabaseHandler.getInstance(getActivity());
-
-        if (db.isFarmaciiTableEmpty()) {
-        db.addFarmacie(new Farmacie(resources.getString(R.string.farmacie_sensiblu1),
-                resources.getStringArray(R.array.orar_sensiblu1),
-                resources.getString(R.string.adresa_sensiblu1),
-                R.drawable.ic_sensiblu,45.4149468,28.0154429, 0));
-        db.addFarmacie(new Farmacie(resources.getString(R.string.farmacie_sensiblu2),
-                resources.getStringArray(R.array.orar_sensiblu2),
-                resources.getString(R.string.adresa_sensiblu2),
-                R.drawable.ic_sensiblu, 45.434956,28.0242761, 0));
-        db.addFarmacie(new Farmacie(resources.getString(R.string.farmacie_sensiblu3),
-                resources.getStringArray(R.array.orar_sensiblu3),
-                resources.getString(R.string.adresa_sensiblu3),
-                R.drawable.ic_sensiblu, 45.4337246,28.0176464, 0));
-        db.addFarmacie(new Farmacie(resources.getString(R.string.farmacie_centrofarm),
-                resources.getStringArray(R.array.orar_centrofarm),
-                resources.getString(R.string.adresa_centrofarm),
-                R.drawable.ic_sensiblu, 45.42842,28.036207, 1));
-        db.addFarmacie(new Farmacie(resources.getString(R.string.farmacie_caroldavila),
-                resources.getStringArray(R.array.orar_caroldavila),
-                resources.getString(R.string.adresa_caroldavila),
-                R.drawable.ic_sensiblu, 45.4412903,28.0562351, 1));
-        db.addFarmacie(new Farmacie(resources.getString(R.string.farmacie_myosotis1),
-                resources.getStringArray(R.array.orar_myosotis1),
-                resources.getString(R.string.adresa_myosotis1),
-                R.drawable.ic_sensiblu, 45.4537705,28.0255884, 1));
-        }
 
 
-        List<Farmacie> listaFarmacii = db.getAllFarmacii();
-
-        farmacii = new ArrayList<Farmacie>(listaFarmacii);
-
-
-    }
-
-        public void startGps() {
-
-        gpsTracker = new GpsTracker(getActivity());
-
-        if (gpsTracker.canGetLocation()) {
-            Toast.makeText(getActivity(), gpsTracker.getLatitude() + " / " + gpsTracker.getLongitude(), Toast.LENGTH_SHORT).show();
-        }
-
-    }
-    */

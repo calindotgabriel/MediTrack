@@ -1,49 +1,66 @@
 package ro.meditrack.model;
-/**
- * Pharmacy class model, used to store info about one entity.
- */
-public class Farmacie {
+
+import com.google.android.gms.maps.model.LatLng;
+import com.j256.ormlite.field.DataType;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+import java.io.Serializable;
 
 
+@DatabaseTable (tableName = "farmacii")
+public class Farmacie  implements Serializable, ItemInterface {
+
+    @DatabaseField
     private int id;
+    @DatabaseField (id = true, canBeNull = false)
+    private String placesId;
+    @DatabaseField (canBeNull = false)
     private String name;
+
+    @DatabaseField (dataType = DataType.SERIALIZABLE)
     private String[] openHours;
+
+    @DatabaseField
     private String vicinity;
+    @DatabaseField
     private String phNumber;
+    @DatabaseField
     private String url;
+    @DatabaseField
     private int icon = - 1;
-    private double lat = -1.0;
-    private double lng = -1.0;
-    private int compensat;
-    private boolean openNow;
+    @DatabaseField
+    private double lat;
+    @DatabaseField
+    private double lng;
+    @DatabaseField
+    private int compensat_da;
+    @DatabaseField
+    private int compensat_nu;
+    @DatabaseField
+    private int openNow;
 
 
     public Farmacie() {
 
     }
 
-    public Farmacie(String name, String[] openHours, String vicinity, int ic_sensiblu, double lat, double lng, int compensat, String phNumber, String url, boolean openNow) {
+    public String getName() {
+        return name;
     }
 
-    public Farmacie(int id, String name, String[] openHours, String vicinity, int icon, double lat, double lng, int compensat, String phNumber, String url, boolean openNow) {
-        this.id = id;
-        this.name = name;
-        this.openHours = openHours;
-        this.vicinity = vicinity;
-        this.icon = icon;
-        this.lat = lat;
-        this.lng = lng;
-        this.compensat = compensat;
-        this.phNumber = phNumber;
-        this.url = url;
-        this.openNow = openNow;
+    public String getPlacesId() {
+        return placesId;
+    }
+
+    public void setPlacesId(String placesId) {
+        this.placesId = placesId;
     }
 
     public boolean getOpenNow() {
-        return openNow;
+        return openNow>0;
     }
-
-    public void setOpenNow(boolean openNow) {
+    public void setOpenNow(int openNow) {
         this.openNow = openNow;
     }
 
@@ -64,7 +81,7 @@ public class Farmacie {
         this.vicinity = vicinity;
     }
 
-    public String getName() {
+    public String getItemDescription() {
         return name;
     }
 
@@ -100,6 +117,10 @@ public class Farmacie {
         return lng;
     }
 
+    public LatLng getLatLng() {
+        return new LatLng(this.getLat(), this.getLng());
+    }
+
     public void setLng(double lng) {
         this.lng = lng;
     }
@@ -107,53 +128,25 @@ public class Farmacie {
     public boolean isNonstop() {
         if (this.openHours[0].equals( "nonstop"))
             return true;
-        if (this.openNow)
+        if (this.openNow > 0)
             return true;
         return false;
     }
 
-    public Farmacie(String name, String[] openHours, String vicinity) {
-        this.name = name;
-        this.openHours = openHours;
-        this.vicinity = vicinity;
+    public int getCompensatDa() {
+        return compensat_da;
+    }
+    public void setCompensatDa(int compensat_da) {
+        this.compensat_da = compensat_da;
     }
 
-
-
-    public Farmacie(String name, String openHours[], String vicinity, int icon) {
-        this.name = name;
-        this.openHours = openHours;
-        this.vicinity = vicinity;
-        this.icon = icon;
+    public int getCompensatNu() {
+        return compensat_nu;
+    }
+    public void setCompensatNu(int compensat_nu) {
+        this.compensat_nu = compensat_nu;
     }
 
-    public int getCompensat() {
-        return compensat;
-    }
-
-    public void setCompensat(int compensat) {
-        this.compensat = compensat;
-    }
-
-    public Farmacie(String name, String[] openHours, String vicinity, int icon, double lat, double lng) {
-        this.name = name;
-        this.openHours = openHours;
-        this.vicinity = vicinity;
-        this.icon = icon;
-
-        this.lat = lat;
-        this.lng = lng;
-    }
-
-    public Farmacie(String name, String[] openHours, String vicinity, int icon, double lat, double lng, int compensat) {
-        this.name = name;
-        this.openHours = openHours;
-        this.vicinity = vicinity;
-        this.icon = icon;
-        this.lat = lat;
-        this.lng = lng;
-        this.compensat = compensat;
-    }
 
     public String getPhNumber() {
         return phNumber;
@@ -171,22 +164,5 @@ public class Farmacie {
         this.url = url;
     }
 
-    public Farmacie(String name, String[] openHours, String vicinity, int icon, double lat, double lng, int compensat, boolean openNow) {
-        this.name = name;
-        this.openHours = openHours;
-        this.vicinity = vicinity;
-        this.icon = icon;
-        this.lat = lat;
-        this.lng = lng;
-        this.compensat = compensat;
-        this.openNow = openNow;
-    }
 
-
-
-    public int getOpenNowInt() {
-        if (this.openNow)
-           return 1;
-        return 0;
-    }
 }

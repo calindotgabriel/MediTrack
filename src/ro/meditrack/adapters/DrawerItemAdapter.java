@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import ro.meditrack.R;
-import ro.meditrack.model.Item;
+import ro.meditrack.model.ItemInterface;
 
 import java.util.ArrayList;
 
@@ -18,9 +18,9 @@ import java.util.ArrayList;
 public class DrawerItemAdapter extends BaseAdapter {
 
     private Context context;
-    private ArrayList<Item> drawerItems;
+    private ArrayList<ItemInterface> drawerItems;
 
-    public DrawerItemAdapter(Context context, ArrayList<Item> drawerItems) {
+    public DrawerItemAdapter(Context context, ArrayList<ItemInterface> drawerItems) {
         this.context = context;
         this.drawerItems = drawerItems;
     }
@@ -61,7 +61,7 @@ public class DrawerItemAdapter extends BaseAdapter {
 
         if (itemText != null) {
             itemText.setText(drawerItems.get(position)
-                    .getName());
+                    .getItemDescription());
         }
 
         return convertView;

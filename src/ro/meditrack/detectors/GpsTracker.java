@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
-import ro.meditrack.utils.AlertDialogManager;
+import android.widget.Toast;
 
 /**
  * Class used to track the user using the GPS sensor or INTERNET if Gps is not available.
@@ -59,8 +59,7 @@ public class GpsTracker extends Service implements LocationListener {
                     .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
             if (!isGPSEnabled && !isNetworkEnabled) {
-                AlertDialogManager alertDialogManager = new AlertDialogManager();
-                alertDialogManager.showAlertDialog(mContext, "No connection", "Please enable either GPS or Internet", false);
+                Toast.makeText(mContext, "NO GPS!", Toast.LENGTH_SHORT).show();
             } else {
                 this.canGetLocation = true;
 
@@ -143,35 +142,6 @@ public class GpsTracker extends Service implements LocationListener {
         return this.canGetLocation;
     }
 
-
-    /**
-     * Function to show settings alert dialog
-     * In order to let user directly activate GPS.
-     * */
-    public void showGpsSettingsAlert(){
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
-
-        // Setting Dialog Title
-        alertDialog.setTitle("GPS is inactive");
-
-        // Setting Dialog Message
-        alertDialog.setMessage("GPS is not enabled. Do you want to go to settings menu?");
-
-        alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog,int which) {
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                mContext.startActivity(intent);
-            }
-        });
-
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        alertDialog.show();
-    }
 
     /**
      * Stops using the GPS sensor

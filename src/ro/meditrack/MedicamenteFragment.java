@@ -12,11 +12,9 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.FrameLayout;
 import ro.meditrack.adapters.MedicamentAdapter;
-import ro.meditrack.db.DatabaseHandler;
 import ro.meditrack.model.Medicament;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by motan on 2/26/14.
@@ -40,15 +38,15 @@ public class MedicamenteFragment extends Fragment {
     public void populateMedicamenteFromDb() {
         Resources resources = getResources();
 
-        DatabaseHandler db = DatabaseHandler.getInstance(getActivity());
+/*        DatabaseHandler db = DatabaseHandler.getInstance(getActivity());
 
-/*        for (int i = 0 ; i <= 6576 ; i++) {
+*//*        for (int i = 0 ; i <= 6576 ; i++) {
 
             Medicament medicament = new Medicament(resources.getString(R.string.m_t_4),
                     resources.getString(R.string.m_p_i) );
 
             db.addMedicament(medicament);
-        }*/
+        }*//*
 
 
         if (db.isMedicamenteTableEmpty()) {
@@ -64,14 +62,14 @@ public class MedicamenteFragment extends Fragment {
             db.addMedicament(new Medicament(resources.getString(R.string.medicament_aspirina1), resources.getString(R.string.descriere_aspirina1)));
             db.addMedicament(new Medicament(resources.getString(R.string.medicament_n_0), resources.getString(R.string.medicament_p_0)));
         }
-        List<Medicament> listaMedicamente = db.getAllMedicamente();
+        List<Medicament> listaMedicamente = db.getAllMedicamente();*/
 
 /*        for (Medicament m : listaMedicamente) {
-            String log = m.getId() + ") [" + m.getName() + " & " + m.getDescirere() + "] \n";
+            String log = m.getId() + ") [" + m.etName() + " & " + m.getDescirere() + "] \n";
             Log.d("MeowMedi", log);
         }*/
 
-        medicamente = new ArrayList<Medicament>(listaMedicamente);
+//        medicamente = new ArrayList<Medicament>(listaMedicamente);
 
     }
 
