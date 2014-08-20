@@ -1,0 +1,53 @@
+#
+# generated on 2014/08/09 03:51:20
+#
+# --table-start--
+dataClass=ro.meditrack.model.Farmacie
+tableName=farmacii
+# --table-fields-start--
+# --field-start--
+fieldName=id
+# --field-end--
+# --field-start--
+fieldName=placesId
+canBeNull=false
+id=true
+# --field-end--
+# --field-start--
+fieldName=name
+canBeNull=false
+# --field-end--
+# --field-start--
+fieldName=openHours
+dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=vicinity
+# --field-end--
+# --field-start--
+fieldName=phNumber
+# --field-end--
+# --field-start--
+fieldName=url
+# --field-end--
+# --field-start--
+fieldName=icon
+# --field-end--
+# --field-start--
+fieldName=lat
+# --field-end--
+# --field-start--
+fieldName=lng
+# --field-end--
+# --field-start--
+fieldName=compensat_da
+# --field-end--
+# --field-start--
+fieldName=compensat_nu
+# --field-end--
+# --field-start--
+fieldName=openNow
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

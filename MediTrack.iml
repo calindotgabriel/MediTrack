@@ -21,6 +21,8 @@
     <orderEntry type="module" module-name="google-play-services_lib" />
     <orderEntry type="library" name="google-play-services1" level="project" />
     <orderEntry type="library" name="picasso-2.3.3" level="project" />
+    <orderEntry type="library" name="ormlite-android-4.48" level="project" />
+    <orderEntry type="library" name="ormlite-core-4.48" level="project" />
   </component>
 </module>
 

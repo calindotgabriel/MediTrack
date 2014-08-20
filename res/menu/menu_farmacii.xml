@@ -9,15 +9,15 @@
           android:orderInCategory="1"
           android:showAsAction="always" />
 
-    <item android:id="@+id/filtru_compensat"
+<!--    <item android:id="@+id/filtru_compensat"
           android:icon="@drawable/ic_compensat"
           android:title="compensat"
           android:showAsAction="ifRoom"/>
-    <!--android:title="compensat"-->
+    &lt;!&ndash;android:title="compensat"&ndash;&gt;
 
     <item android:id="@+id/filtru_nonstop"
           android:icon="@drawable/ic_nonstop"
           android:title="nonstop"
-          android:showAsAction="ifRoom"/>
+          android:showAsAction="ifRoom"/>-->
 
 </menu>

@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
                 android:orientation="vertical"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/bg_light_grey">
 
@@ -262,3 +267,4 @@
 
 </RelativeLayout>
 
+</ScrollView>
