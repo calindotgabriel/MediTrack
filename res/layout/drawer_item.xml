@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <TextView
+    <com.neopixl.pixlui.components.textview.TextView
             xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:pixlui="http://schemas.android.com/apk/com.neopixl.pixlui"
             android:id="@+id/item_name"
             android:text="Drawer Item"
-            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textColor="@color/white"
+            android:textColor="@color/subheader_grey"
             android:gravity="center_vertical"
+            android:textSize="18sp"
             android:paddingLeft="20dp"
+            pixlui:copyandpaste="false"
+            pixlui:clearclipboardcontent="true"
+            pixlui:typeface="Roboto-Medium.ttf"
         />
 
 <!-- android:layout_height="48dp"-->
