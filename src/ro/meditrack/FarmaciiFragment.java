@@ -14,13 +14,11 @@ import ro.meditrack.adapters.FarmaciiAdapter;
 import ro.meditrack.db.DbHelper;
 import ro.meditrack.detectors.GpsTracker;
 import ro.meditrack.detectors.InternetConnectionDetector;
-import ro.meditrack.exception.GsonInstanceNullException;
 import ro.meditrack.gson.GsonClient;
 import ro.meditrack.gson.GsonHandler;
 import ro.meditrack.model.Farmacie;
 import ro.meditrack.shared.Holder;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +66,7 @@ public class FarmaciiFragment extends ListFragment {
 
         try {
             new GsonHandler(parentActivity.getResources().openRawResource(R.raw.android));
-            mClient = GsonClient.getSimpleInstance();
+            mClient = GsonClient.getSimpleGsonInstance();
             mClient.setContext(parentActivity);
 
         } catch (Exception e) {
@@ -95,12 +93,9 @@ public class FarmaciiFragment extends ListFragment {
 
         Fragment farmacieDetailsFragment = new FarmacieDetailsFragment();
         farmacieDetailsFragment.setArguments(bundle);
-
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .addToBackStack(null)
-                .replace(R.id.frame_container, farmacieDetailsFragment).commit();
+        goToFragment(farmacieDetailsFragment);
     }
+
 
 
 
@@ -141,11 +136,12 @@ public class FarmaciiFragment extends ListFragment {
                 //DB IN CREATE MODE
                 if (mClient != null)
                     mClient.clearPharmacies();
-
                 new LoadPharmacies().execute();
-
                 return true;
 
+            case R.id.settings:
+                goToFragment(new SettingsFragment());
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -285,6 +281,13 @@ public class FarmaciiFragment extends ListFragment {
         }
         return dbHelper;
     }
+
+    public void goToFragment(Fragment fragment) {
+        getFragmentManager().beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.frame_container, fragment).commit();
+    }
+
 }
 
 

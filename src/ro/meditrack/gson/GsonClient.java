@@ -30,9 +30,6 @@ import java.security.KeyStore;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by adrian on 1/10/14.
- */
 public class GsonClient {
     private static String TAG = "GsonClient";
     private static GsonClient ourInstance ;
@@ -41,13 +38,16 @@ public class GsonClient {
 
     private List<Farmacie> pharmacies;
 
-    private static String SERVER_IP = "192.168.0.104";// Todo use file
-    private static String SERVER_PORT = "30310";
+    private String SERVER_IP = "calindotgabriel.ddns.net";
+    private String SERVER_PORT = "30310";
 
     private Context mContext;
 
     private DbHelper dbHelper;
+    
+/*    public static void registerKeystore() {
 
+    }*/
 
 
     public static GsonClient getInstance(KeyStore keyStore) {
@@ -103,7 +103,7 @@ public class GsonClient {
     }
 
 
-    public static GsonClient getSimpleInstance() throws GsonInstanceNullException{
+    public static GsonClient getSimpleGsonInstance() throws GsonInstanceNullException{
         if (ourInstance == null)
            throw new GsonInstanceNullException();
         return ourInstance;
@@ -192,6 +192,21 @@ public class GsonClient {
             dbHelper = OpenHelperManager.getHelper(mContext, DbHelper.class);
         }
         return dbHelper;
+    }
+
+
+    public String getServerIp() {
+        return SERVER_IP;
+    }
+    public void setServerIp(String SERVER_IP) {
+        this.SERVER_IP = SERVER_IP;
+    }
+
+    public String getServerPort() {
+        return SERVER_PORT;
+    }
+    public void setServerPort(String SERVER_PORT) {
+        this.SERVER_PORT = SERVER_PORT;
     }
 
 

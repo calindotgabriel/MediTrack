@@ -1,7 +1,6 @@
 package ro.meditrack;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,7 +86,7 @@ public class FarmacieDetailsFragment extends Fragment {
                 public void onClick(View v) {
 
                     try {
-                        GsonClient gsonClient = GsonClient.getSimpleInstance();
+                        GsonClient gsonClient = GsonClient.getSimpleGsonInstance();
                         gsonClient.contactCompensatField(f.getPlacesId(), true);
 
                         f.setCompensatDa(f.getCompensatDa() + 1);
@@ -105,7 +104,7 @@ public class FarmacieDetailsFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     try {
-                        GsonClient gsonClient = GsonClient.getSimpleInstance();
+                        GsonClient gsonClient = GsonClient.getSimpleGsonInstance();
                         gsonClient.contactCompensatField(f.getPlacesId(), false);
 
                         f.setCompensatNu(f.getCompensatNu() + 1);

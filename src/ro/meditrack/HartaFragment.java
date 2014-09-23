@@ -13,6 +13,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.*;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import ro.meditrack.db.DbHelper;
 import ro.meditrack.detectors.GpsTracker;
 import ro.meditrack.model.Farmacie;
 
@@ -30,6 +32,8 @@ public class HartaFragment extends Fragment {
     private double currentLatitude;
     private double currentLongitude;
     private GpsTracker gps;
+
+    private DbHelper dbHelper;
 
     private ArrayList<Farmacie> farmacii;
 
@@ -73,49 +77,32 @@ public class HartaFragment extends Fragment {
                 .replace(R.id.frame_container, fragment).commit();
     }
 
-    public int parseId(String oldId) {
-
+    public int parseId(String oldId) {//todo replace
         return Integer.parseInt(oldId.replace("m", ""));
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-//       Toast.makeText(getActivity(), "OnViewCreated()", Toast.LENGTH_LONG).show();
-
         setAbTitle();
 
         map = getGoogleMap();
-
         map.setMyLocationEnabled(true);
-        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                return false;
-            }
-        });
-
-
-        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+/*        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 beginTransaction(parseId(marker.getId()));
 //                Toast.makeText(getActivity(), marker.getId(), Toast.LENGTH_LONG).show();
                 return false;
             }
-        });
+        });*/
 
         gps = new GpsTracker(getActivity());
-
         if (gps.canGetLocation()) {
             currentLatitude = gps.getLatitude();
             currentLongitude = gps.getLongitude();
-
             gps.setLatitude(currentLatitude);
             gps.setLongitude(currentLongitude);
-
-
         }
 
 //        addFarmaciiMarkers();
@@ -131,6 +118,23 @@ public class HartaFragment extends Fragment {
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(currentLatitude, currentLongitude), 15));
 
         gps.stopUsingGPS();
+
+
+        List<Farmacie> farmacies = getHelper().getRuntimeDao().queryForAll();
+
+        for (Farmacie f : farmacies) {
+
+            BitmapDescriptor colorBitmapDescriptor =
+                    BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN);
+
+            map.addMarker(new MarkerOptions()
+                    .title(f.getName())
+                    .snippet(f.getVicinity())
+                    .position(new LatLng(f.getLat(), f.getLng()))
+                    .icon(colorBitmapDescriptor));
+
+        }
+
     }
 
     public void getInfoFromBundle(Bundle bundle) {
@@ -176,6 +180,8 @@ public class HartaFragment extends Fragment {
 */
 //    }
 
+
+
     public GoogleMap getGoogleMap() {
         if (map == null && getActivity() != null && getActivity().getFragmentManager() != null) {
             MapFragment mf = (MapFragment) getActivity().getFragmentManager().findFragmentById(R.id.map);
@@ -188,54 +194,30 @@ public class HartaFragment extends Fragment {
 
 
 
-/*
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        FragmentManager fm = getChildFragmentManager();
-        fragment = (MapFragment) fm.findFragmentById(R.id.mapview);
-
-        if (fragment == null) {
-            fragment = MapFragment.newInstance();
-            fm.beginTransaction().
-                    replace(R.id.mapview, fragment).commit();
-        }
-    }
-*/
-
-    @Override
-    public void onPause() {
-        super.onPause();
-//        Toast.makeText(getActivity(), "onPaused() !", Toast.LENGTH_SHORT).show();
-
-    }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-//        Toast.makeText(getActivity(), "onDestroyedView() !", Toast.LENGTH_SHORT).show();
+
+        if (dbHelper != null) {
+            OpenHelperManager.releaseHelper();
+            dbHelper = null;
+        }
+
         Fragment fragment = (getFragmentManager().findFragmentById(R.id.map));
         FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
-
-/*
-        if (ft.isEmpty())
-             Toast.makeText(getActivity(), "EMPTY !", Toast.LENGTH_SHORT).show();
-        else
-             Toast.makeText(getActivity(), "NOT EMPTY !", Toast.LENGTH_SHORT).show();
-*/
-
-
         ft.remove(fragment);
         ft.commit();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-//        Toast.makeText(getActivity(), "onDestroyed() !", Toast.LENGTH_SHORT).show();
 
+    private DbHelper getHelper() {
+        if (dbHelper == null) {
+            dbHelper = OpenHelperManager.getHelper(getActivity(), DbHelper.class);
+        }
+        return dbHelper;
     }
+
+
 
 
 }
