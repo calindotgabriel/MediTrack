@@ -18,40 +18,76 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
-import ro.meditrack.Keys;
 import ro.meditrack.db.DbHelper;
-import ro.meditrack.exception.GsonInstanceNullException;
 import ro.meditrack.model.Farmacie;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
 import java.util.Arrays;
 import java.util.List;
 
 public class GsonClient {
     private static String TAG = "GsonClient";
     private static GsonClient ourInstance ;
+
+    public static final int ANDROID_LISTENING_PORT = 30001;
+
     private Gson gson;
     private Transport transport;
 
     private List<Farmacie> pharmacies;
 
-    private String SERVER_IP = "calindotgabriel.ddns.net";
-    private String SERVER_PORT = "30310";
+    private static String SERVER_IP = "calindotgabriel.ddns.net";
+    private static String SERVER_PORT = "30310";
 
     private Context mContext;
 
     private DbHelper dbHelper;
-    
-/*    public static void registerKeystore() {
 
-    }*/
+    private static KeyStore keyStore;
+    private static Route to;
+    private static URI from;
 
 
-    public static GsonClient getInstance(KeyStore keyStore) {
+    private GsonClient() {}
+
+
+    public static void registerKeystore(InputStream keystoreSource) {
+
+        KeyStore localTrustStore;
+        try {
+            localTrustStore = KeyStore.getInstance("BKS");
+            localTrustStore.load(keystoreSource, "123456".toCharArray());
+            keyStore = localTrustStore;
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        } catch (CertificateException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static GsonClient getInstance() {
         if (ourInstance == null){
+
+            try {
+                if (keyStore == null)
+                    throw new Exception("You must first register a keystore!");
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
 
             ourInstance = new GsonClient();
             ourInstance.gson = new GsonBuilder()
@@ -60,7 +96,7 @@ public class GsonClient {
 
             ourInstance.transport = new Transport();
 
-            InetSocketAddress inetSocketAddress = new InetSocketAddress(30001);
+            InetSocketAddress inetSocketAddress = new InetSocketAddress(ANDROID_LISTENING_PORT);
 
             List<InetSocketAddress> listeningAddresses =
                                                 Arrays.asList(inetSocketAddress);
@@ -79,11 +115,9 @@ public class GsonClient {
 
             try {
                 rmiService = new RmiService(ourInstance.transport, ourInstance.gson);
-
                 rmiService.start();
 
                 URI uri = null;
-
                 try {
                     uri = new URI("rmi:service");
                 } catch (URISyntaxException e) {
@@ -93,47 +127,23 @@ public class GsonClient {
                 Route target = new Route(uri);
                 Call call = new Call(target, "register", "client", ourInstance);
                 call.send(ourInstance.transport);
+
+                to = new Route
+                        (new URI("tcp://" + SERVER_IP + ":" + SERVER_PORT),
+                                new URI("rmi:server"));
+
+                from = new URI("rmi:client");
+
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
         }
 
-
         return ourInstance;
     }
 
-
-    public static GsonClient getSimpleGsonInstance() throws GsonInstanceNullException{
-        if (ourInstance == null)
-           throw new GsonInstanceNullException();
-        return ourInstance;
-    }
-
-    private GsonClient() {
-    }
-
-    private Route to;
-    private URI from;
-
-    public void processURIs () {
-
-        try {
-            to = new Route
-                    (new URI("tcp://" + SERVER_IP + ":" + SERVER_PORT),
-                            new URI("rmi:server"));
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            from = new URI("rmi:client");
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void getPharmaciesFromSv(String text, double lat, double lng){
-        processURIs();
 
         Call basic = new Call(to, "test", text, lat, lng);  // send to the method 'test' of server
         Call ack = basic.callback(from, "ack"); // 'test' returns to 'ack'
@@ -142,7 +152,6 @@ public class GsonClient {
     }
 
     public void contactCompensatField(String googleId, boolean state) {
-        processURIs();
 
         Call basic = new Call(to, "setCompensatField", googleId, state);
         Call response = basic.callback(from, "gotCompensatResponse");
@@ -195,19 +204,6 @@ public class GsonClient {
     }
 
 
-    public String getServerIp() {
-        return SERVER_IP;
-    }
-    public void setServerIp(String SERVER_IP) {
-        this.SERVER_IP = SERVER_IP;
-    }
-
-    public String getServerPort() {
-        return SERVER_PORT;
-    }
-    public void setServerPort(String SERVER_PORT) {
-        this.SERVER_PORT = SERVER_PORT;
-    }
 
 
 }

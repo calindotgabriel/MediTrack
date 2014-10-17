@@ -15,7 +15,6 @@ import ro.meditrack.db.DbHelper;
 import ro.meditrack.detectors.GpsTracker;
 import ro.meditrack.detectors.InternetConnectionDetector;
 import ro.meditrack.gson.GsonClient;
-import ro.meditrack.gson.GsonHandler;
 import ro.meditrack.model.Farmacie;
 import ro.meditrack.shared.Holder;
 
@@ -42,7 +41,6 @@ public class FarmaciiFragment extends ListFragment {
     private double lat;
     private double lng;
 
-    private Activity parentActivity;
 
     private GsonClient mClient;
 
@@ -52,26 +50,18 @@ public class FarmaciiFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        parentActivity = getActivity();
-
 
         farmacii = (ArrayList) getHelper().getRuntimeDao().queryForAll();
 
-        adapter = new FarmaciiAdapter(parentActivity, farmacii, showOnlyCompensat, showOnlyNonstop);
+        adapter = new FarmaciiAdapter(getActivity(), farmacii, showOnlyCompensat, showOnlyNonstop);
         setListAdapter(adapter);
 
         hasInternet();
         hasGps();
 
 
-        try {
-            new GsonHandler(parentActivity.getResources().openRawResource(R.raw.android));
-            mClient = GsonClient.getSimpleGsonInstance();
-            mClient.setContext(parentActivity);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        mClient = GsonClient.getInstance();
+        mClient.setContext(getActivity());
 
 
         if (farmacii.size() == 0)
@@ -101,7 +91,7 @@ public class FarmaciiFragment extends ListFragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        LayoutInflater inflater = (LayoutInflater) parentActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         switch (item.getItemId()) {
 /*            case R.id.filtru_compensat:
@@ -109,10 +99,10 @@ public class FarmaciiFragment extends ListFragment {
 
                 if (compensatClickCount % 2 == 0) {
                     showOnlyCompensat = true;
-                    Toast.makeText(parentActivity, "Compensat On", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Compensat On", Toast.LENGTH_SHORT).show();
                 } else {
                     showOnlyCompensat = false;
-                    Toast.makeText(parentActivity, "Compensat Off", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Compensat Off", Toast.LENGTH_SHORT).show();
                 }
 
                 onCreateView(inflater, null, null);
@@ -122,10 +112,10 @@ public class FarmaciiFragment extends ListFragment {
 
                 if (nonstopClickCount % 2 == 0) {
                     showOnlyNonstop = true;
-                    Toast.makeText(parentActivity, "Open On", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Open On", Toast.LENGTH_SHORT).show();
                 } else {
                     showOnlyNonstop = false;
-                    Toast.makeText(parentActivity, "Open Off", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Open Off", Toast.LENGTH_SHORT).show();
                 }
 
                 onCreateView(inflater, null, null);
@@ -232,7 +222,7 @@ public class FarmaciiFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ActionBar ab = parentActivity.getActionBar();
+        ActionBar ab = getActivity().getActionBar();
         if (ab != null)
             ab.setTitle("Farmacii");
     }
@@ -240,28 +230,28 @@ public class FarmaciiFragment extends ListFragment {
 
 
     public boolean hasGps() {
-        GpsTracker gpsTracker = new GpsTracker(parentActivity);
+        GpsTracker gpsTracker = new GpsTracker(getActivity());
         if (gpsTracker.canGetLocation()) {
             lat = gpsTracker.getLatitude();
             lng = gpsTracker.getLongitude();
-            Toast.makeText(parentActivity, lat + " / " + lng, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), lat + " / " + lng, Toast.LENGTH_SHORT).show();
             Holder.lat = lat;
             Holder.lng = lng;
             return true;
         }
         else {
-            Toast.makeText(parentActivity, "No GPS! Cannot query pharmacies!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "No GPS! Cannot query pharmacies!", Toast.LENGTH_SHORT).show();
             return false;
         }
     }
 
 
     public boolean hasInternet() {
-        InternetConnectionDetector net = new InternetConnectionDetector(parentActivity);
+        InternetConnectionDetector net = new InternetConnectionDetector(getActivity());
         if (net.isConnectingToInternet())
             return true;
         else {
-            Toast.makeText(parentActivity, "No internet connection!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "No internet connection!", Toast.LENGTH_SHORT).show();
             return false;
         }
     }
@@ -277,7 +267,7 @@ public class FarmaciiFragment extends ListFragment {
 
     private DbHelper getHelper() {
         if (dbHelper == null) {
-            dbHelper = OpenHelperManager.getHelper(parentActivity, DbHelper.class);
+            dbHelper = OpenHelperManager.getHelper(getActivity(), DbHelper.class);
         }
         return dbHelper;
     }

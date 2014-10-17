@@ -9,6 +9,12 @@
           android:orderInCategory="1"
           android:showAsAction="always" />
 
+    <item
+            android:id="@+id/settings"
+            android:title="settings"
+            android:showAsAction="never"
+        />
+
 <!--    <item android:id="@+id/filtru_compensat"
           android:icon="@drawable/ic_compensat"
           android:title="compensat"

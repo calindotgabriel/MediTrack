@@ -1,80 +1,105 @@
 package ro.meditrack;
 
 import android.app.*;
-import android.content.Context;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.res.Configuration;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.*;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 import ro.meditrack.adapters.DrawerItemAdapter;
-import ro.meditrack.detectors.GpsTracker;
-import ro.meditrack.detectors.InternetConnectionDetector;
-import ro.meditrack.exception.GsonInstanceNullException;
 import ro.meditrack.gson.GsonClient;
-import ro.meditrack.gson.GsonHandler;
-import ro.meditrack.model.Farmacie;
 import ro.meditrack.model.Item;
 import ro.meditrack.model.ItemInterface;
 
-import java.io.IOException;
 
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
- * The Main Activity with drawer and frame for fragments.
+ * APPLICATION ENTRY POINT
+ * This Activity acts as a container for all the fragments.
  */
 public class MainActivity extends Activity {
 
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private ArrayList<ItemInterface> drawerItems;
-    private Context mCtx;
 
+    ActionBarDrawerToggle drawerToggle;
 
+    /**
+     * Entry point method.
+     * @param savedInstanceState bundle with data saved from users sessions
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        mCtx = this;
+        ArrayList<ItemInterface> drawerItems = new ArrayList<>();
+        ListView drawerList = (ListView) findViewById(R.id.list);
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        InputStream key = getResources().openRawResource(R.raw.android);
 
-        initializeLayout();
+        initLayout(drawerItems, drawerList, drawerLayout);
+        initGson(key);
+
+        displayFragment(0, drawerLayout, drawerList);
+
+    }
+
+    /**
+     * Initialize the main layout.
+     *
+     * @param drawerItems List of choices available in the drawer.
+     * @param drawerList Drawer's ListView, filled with drawerItems.
+     * @param drawerLayout Main Drawer container.
+     */
+    public void initLayout(ArrayList<ItemInterface> drawerItems,
+                           ListView drawerList, DrawerLayout drawerLayout) {
+
+        SlideMenuClickListener slideMenuClickListener =
+                new SlideMenuClickListener();
+        slideMenuClickListener.setDrawerLayout(drawerLayout);
+        slideMenuClickListener.setDrawerList(drawerList);
+        drawerList.setOnItemClickListener(slideMenuClickListener);
+
+        addChoicesToDrawer(drawerItems);
+        DrawerItemAdapter adapter = new DrawerItemAdapter(this, drawerItems);
+        drawerList.setAdapter(adapter);
+
         setActionBar();
-        addItemsToDrawer();
-        initializeAdapter();
-        initializeDrawerToggle();
-
-        displayView(0);
+        initDrawerToggle(drawerLayout);
 
     }
 
+    /**
+     * Initialize GSON.
+     *
+     * @param key The Gson Key required for client - server communication.
+     */
+    public void initGson(InputStream key) { GsonClient.registerKeystore(key); }
 
-    public void initializeLayout() {
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.list);
-        mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
-    }
 
-
+    /**
+     * Configures the action bar.
+     */
     public void setActionBar() {
         ActionBar ab = getActionBar();
         if (ab != null) {
-            ab.setDisplayHomeAsUpEnabled(true);
             ab.setHomeButtonEnabled(true);
+            ab.setDisplayHomeAsUpEnabled(true); // shows the 'hamburger' at the actionbar
         }
     }
 
-
-    public void addItemsToDrawer() {
-        drawerItems = new ArrayList<ItemInterface>();
+    /**
+     * Add items as choices for the user.
+     *
+     * @param drawerItems ArrayList about to be filled with available choices.
+     */
+    public void addChoicesToDrawer(ArrayList<ItemInterface> drawerItems) {
         drawerItems.add(new Item("Farmacii"));
         drawerItems.add(new Item("Medicamente"));
         drawerItems.add(new Item("Harta"));
@@ -82,14 +107,12 @@ public class MainActivity extends Activity {
     }
 
 
-    public void initializeAdapter() {
-        DrawerItemAdapter adapter = new DrawerItemAdapter(mCtx, drawerItems);
-        mDrawerList.setAdapter(adapter);
-    }
-
-
-    public void initializeDrawerToggle() {
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+    /**
+     * Used for the 'toggle' feature - swipe opens the drawer.
+     * @param drawerLayout The Drawer Container
+     */
+    public void initDrawerToggle(DrawerLayout drawerLayout) {
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
                 R.drawable.ic_drawer, R.string.app_name, R.string.app_name) {
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -101,12 +124,17 @@ public class MainActivity extends Activity {
                 super.onDrawerClosed(drawerView);
             }
         };
-
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        drawerLayout.setDrawerListener(drawerToggle);
     }
 
-
-    public void displayView(int position) {
+    /**
+     * Displays fragments accordingly to what the user selected.
+     *
+     * @param position position where the user clicked, meaning the feature he wants to use
+     * @param drawerLayout the drawer container
+     * @param drawerList the list with options
+     */
+    public void displayFragment(int position, DrawerLayout drawerLayout, ListView drawerList) {
         boolean showMap = true;
 
         if (position == 2) {
@@ -118,6 +146,7 @@ public class MainActivity extends Activity {
         }
 
         Fragment fragment = null;
+
         switch (position) {
             case 0:
                 fragment = new FarmaciiFragment();
@@ -129,7 +158,7 @@ public class MainActivity extends Activity {
                 if (showMap)
                     fragment = new HartaFragment();
                 else {
-                    checkAndCloseDrawer(position);
+                    checkAndCloseDrawer(position, drawerLayout, drawerList);
                 }
                 break;
             }
@@ -137,23 +166,30 @@ public class MainActivity extends Activity {
                 fragment = new ContactFragment();
                 break;
             default:
-                Toast.makeText(mCtx, "Ai dat click pe " + drawerItems.get(position).getItemDescription()
-                        + " cu pozitia " + position
-                        + " care este inca in lucru !", Toast.LENGTH_SHORT).show();
+
         }
 
+        goToFragment(fragment);
+        checkAndCloseDrawer(position, drawerLayout, drawerList);
 
+    }
+
+    /**
+     * Navigates to Fragment.
+     * Puts the selected fragment in the main frame.
+     * @param fragment - the picked fragment
+     */
+    public void goToFragment(Fragment fragment) {
         if (fragment != null) {
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.frame_container, fragment).commit();
-
-            checkAndCloseDrawer(position);
         }
     }
 
 
-
+/*
+    TODO bugfix
     @Override
     public void onBackPressed() {
 
@@ -169,46 +205,89 @@ public class MainActivity extends Activity {
                     .replace(R.id.frame_container, fragment).commit();
 
         } else
-            mDrawerLayout.openDrawer(mDrawerList);
+            drawerLayout.openDrawer(mDrawerList);
+    }*/
+
+    /**
+     * Close the drawer.
+     *
+     * @param position - the position
+     * @param drawerLayout - main drawer layout
+     * @param drawerList - drawer's list
+     */
+    public void checkAndCloseDrawer(int position, DrawerLayout drawerLayout,
+                                    ListView drawerList) {
+/*        mDrawerList.setItemChecked(position, true);
+        mDrawerList.setSelection(position);*/
+        drawerLayout.closeDrawer(drawerList);
     }
 
-    public void checkAndCloseDrawer(int position) {
-        mDrawerList.setItemChecked(position, true);
-        mDrawerList.setSelection(position);
-        mDrawerLayout.closeDrawer(mDrawerList);
-    }
-
+    /**
+     * Called when the action bar is clicked.
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        assert(drawerToggle != null);
+        return drawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
+    /**
+     *
+     * Used for showing the 'hamburger' at ab.
+     */
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
+        assert(drawerToggle != null);
+        drawerToggle.syncState();
     }
 
+    /**
+     *
+     * Used for showing the 'hamburger' at ab.
+     */
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggls
-        mDrawerToggle.onConfigurationChanged(newConfig);
+        assert(drawerToggle != null);
+        drawerToggle.onConfigurationChanged(newConfig);
     }
 
 
-
-
+    /**
+     * Class used for the 'slide' functionality.
+     * TODO move me
+     */
     private class SlideMenuClickListener implements
             ListView.OnItemClickListener {
+        DrawerLayout drawerLayout;
+        ListView drawerList;
+
+        public DrawerLayout getDrawerLayout() {
+            return drawerLayout;
+        }
+        public void setDrawerLayout(DrawerLayout drawerLayout) {
+            this.drawerLayout = drawerLayout;
+        }
+
+        public ListView getDrawerList() {
+            return drawerList;
+        }
+        public void setDrawerList(ListView drawerList) {
+            this.drawerList = drawerList;
+        }
+
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position,
                                 long id) {
-            displayView(position);
+            assert(getDrawerLayout() != null);
+            assert(getDrawerList() != null);
+            displayFragment(position, getDrawerLayout(), getDrawerList());
         }
     }
 

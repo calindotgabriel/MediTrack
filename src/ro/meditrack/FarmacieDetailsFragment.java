@@ -85,16 +85,12 @@ public class FarmacieDetailsFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
 
-                    try {
-                        GsonClient gsonClient = GsonClient.getSimpleGsonInstance();
+                        GsonClient gsonClient = GsonClient.getInstance();
                         gsonClient.contactCompensatField(f.getPlacesId(), true);
 
                         f.setCompensatDa(f.getCompensatDa() + 1);
                         compensatDaLabel.setText(f.getCompensatDa() + " persoane spun ca da");
 
-                    } catch (GsonInstanceNullException e) {
-                        e.printStackTrace();
-                    }
                 }
             });
 
@@ -103,16 +99,10 @@ public class FarmacieDetailsFragment extends Fragment {
             compensatNu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    try {
-                        GsonClient gsonClient = GsonClient.getSimpleGsonInstance();
+                        GsonClient gsonClient = GsonClient.getInstance();
                         gsonClient.contactCompensatField(f.getPlacesId(), false);
-
                         f.setCompensatNu(f.getCompensatNu() + 1);
                         comepnsatNuLabel.setText(f.getCompensatNu() + " persoane spun ca nu");
-
-                    } catch (GsonInstanceNullException e) {
-                        e.printStackTrace();
-                    }
 
                 }
             });

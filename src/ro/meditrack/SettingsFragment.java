@@ -25,18 +25,15 @@ public class SettingsFragment extends PreferenceFragment {
 
         addPreferencesFromResource(R.xml.preferances);
 
-        try {
-             gsonInstance = GsonClient.getSimpleGsonInstance();
+        gsonInstance = GsonClient.getInstance();
 
-        } catch (GsonInstanceNullException e) {
-            e.printStackTrace();
-        }
+
 
         final EditTextPreference ipPref = (EditTextPreference) findPreference(PREF_IP);
         final EditTextPreference portPref = (EditTextPreference) findPreference(PREF_PORT);
 
-        ipPref.setDefaultValue(gsonInstance.getServerIp());
-        portPref.setDefaultValue(gsonInstance.getServerIp());
+//        ipPref.setDefaultValue(gsonInstance.getServerIp());
+//        portPref.setDefaultValue(gsonInstance.getServerIp());
 
         ipPref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
